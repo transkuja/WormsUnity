@@ -14,7 +14,19 @@ public class TurnHandler : MonoBehaviour {
 
     public int numberOfPlayers = 2;
 
-	void Start () {
+    bool hasTurnStarted = false;
+    public float turnTimer = 3.0f;
+    public float resetTurnTimer = 3.0f;
+
+    int currentPlayerTurn = 0;
+
+    GameObject activeCameraRef;
+
+    // In between turns timer
+    public float inBetweenTurnTimer = 1.5f;
+    public float resetInBetweenTurnTimer = 1.5f;
+
+    void Start () {
         characters = new List<CharacterData>[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++)
         {
@@ -28,13 +40,47 @@ public class TurnHandler : MonoBehaviour {
             characters[i % numberOfPlayers].Add(newCharacter.GetComponent<CharacterData>());
         }
 
-        int startingPlayer = Random.Range(0, numberOfPlayers);
-        characters[startingPlayer][0].cameraRef.SetActive(true);
-        characters[startingPlayer][0].hasControl = true;
-
+        currentPlayerTurn = Random.Range(0, numberOfPlayers);
+        characters[currentPlayerTurn][0].cameraRef.SetActive(true);
+        activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
+        characters[currentPlayerTurn][0].hasControl = true;
+        GameManager.instance.uiRef.UpdateTimer(turnTimer);
     }
-	
-	void Update () {
-		
-	}
+
+    void Update () {
+		if (hasTurnStarted)
+        {
+            turnTimer -= Time.deltaTime;
+            if (turnTimer < 0.0f)
+            {
+                // Next turn
+                turnTimer = resetTurnTimer;
+                hasTurnStarted = false;
+                NextTurn();
+            }
+            GameManager.instance.uiRef.UpdateTimer(turnTimer);
+        }
+        else
+        {
+            // In between turns timer
+            inBetweenTurnTimer -= Time.deltaTime;
+            if (inBetweenTurnTimer < 0.0f)
+            {
+                inBetweenTurnTimer = resetInBetweenTurnTimer;
+                hasTurnStarted = true;
+            }
+        }
+    }
+
+    void NextTurn()
+    {
+        currentPlayerTurn++;
+        currentPlayerTurn %= numberOfPlayers;
+        activeCameraRef.SetActive(false);
+
+        characters[currentPlayerTurn][0].cameraRef.SetActive(true);
+        activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
+
+        characters[currentPlayerTurn][0].hasControl = true;
+    }
 }
