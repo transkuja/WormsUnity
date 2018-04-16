@@ -9,9 +9,15 @@ public class WeaponWithProjectile : Weapon {
     
     public override void Shoot()
     {
+        base.Shoot();
         GameObject instance = Instantiate(projectile, GetComponentInChildren<ProjectilePosition>().transform.position, GetComponentInChildren<ProjectilePosition>().transform.rotation, null);
         instance.AddComponent<Rigidbody>();
-        instance.GetComponent<Rigidbody>().AddForce(instance.transform.up * weaponPower, ForceMode.Impulse);
+
+        if (isChargeable)
+            instance.GetComponent<Rigidbody>().AddForce(instance.transform.up * currentCharge, ForceMode.Impulse);
+        else
+            instance.GetComponent<Rigidbody>().AddForce(instance.transform.up * weaponPowerMax, ForceMode.Impulse);
+
         instance.GetComponentInChildren<ProjectileHandler>().damage = damage;
     }
 }

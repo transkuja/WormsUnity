@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -371,19 +371,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 1333604498264106, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 4174831589928650, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.000058222027
       objectReference: {fileID: 0}
-    - target: {fileID: 114181461977111264, guid: 50efaed5cbbd0be43aef4c2d474b1628,
-        type: 2}
-      propertyPath: weaponPower
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114303721465086360, guid: 50efaed5cbbd0be43aef4c2d474b1628,
-        type: 2}
-      propertyPath: jumpStrength
-      value: 10
+    - target: {fileID: 4174831589928650, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.000012329051
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
@@ -602,8 +596,8 @@ MonoBehaviour:
   character: {fileID: 1333604498264106, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
   startingPositions: {fileID: 1896545818}
   numberOfPlayers: 2
-  turnTimer: 5
-  resetTurnTimer: 5
+  turnTimer: 500
+  resetTurnTimer: 500
   inBetweenTurnTimer: 1
   resetInBetweenTurnTimer: 1
 --- !u!114 &1406803402
@@ -792,7 +786,7 @@ Transform:
   m_GameObject: {fileID: 1521120293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -886,7 +880,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 39.2
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -910,7 +904,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1779953456}
-  m_LocalRotation: {x: -0.20797266, y: -0.00000004376348, z: -0.000000040913054, w: -0.9781347}
+  m_LocalRotation: {x: -0.20797266, y: -0.000058222027, z: 0.000012329051, w: -0.9781347}
   m_LocalPosition: {x: 0, y: 4.94, z: -8.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

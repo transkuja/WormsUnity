@@ -11,6 +11,42 @@ public class Controller : MonoBehaviour {
     ControllerState currentState;
 
     bool isGrounded = false;
+    Weapon equippedWeapon;
+
+    public float moveSpeed;
+    public float maxSpeed;
+
+    public Weapon EquippedWeapon
+    {
+        get
+        {
+            if (equippedWeapon == null)
+                equippedWeapon = GetComponentInChildren<Weapon>();
+            return equippedWeapon;
+        }
+
+        set
+        {
+            equippedWeapon = value;
+        }
+    }
+
+    public bool IsGrounded
+    {
+        get
+        {
+            return isGrounded;
+        }
+
+        set
+        {
+            isGrounded = value;
+            if (isGrounded)
+                rb.drag = 15.0f;
+            else
+                rb.drag = 0.0f;
+        }
+    }
 
     private void Start()
     {
@@ -24,38 +60,67 @@ public class Controller : MonoBehaviour {
         currentState = ControllerState.Move;
     }
 
-    void Update()
+    void MoveStateControls()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
-    
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        // Switch to aim mode
+        if (!IsGrounded)
+            return;
+        
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EquippedWeapon != null)
+            {
+                if (EquippedWeapon.isAimAvailable)
+                {
+                    currentState = ControllerState.Aim;
+                    return;
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
         }
 
-        // Aim mode
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (GetComponentInChildren<Weapon>())
-            {
-                if (GetComponentInChildren<Weapon>().isAimAvailable)
-                    currentState = ControllerState.Aim;
-            }
-        }
+        transform.Rotate(Vector3.up * Input.GetAxis("Horizontal"));
+        rb.AddForce(transform.forward * moveSpeed * Input.GetAxis("Vertical"));
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+    }
 
+    void AimStateControls()
+    {
         if (Input.GetMouseButtonUp(0))
             currentState = ControllerState.Move;
+    }
+
+    void Update()
+    {
+        IsGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+
+        if (currentState == ControllerState.Move)
+            MoveStateControls();
+        else if (currentState == ControllerState.Aim)
+            AimStateControls();
 
         // Shoot!
         if (Input.GetMouseButtonDown(1))
         {
-            if (GetComponentInChildren<Weapon>())
+            if (EquippedWeapon != null)
             {
-                GetComponentInChildren<Weapon>().Shoot();
+                if (EquippedWeapon.isChargeable && !EquippedWeapon.isCharging)
+                {
+                    EquippedWeapon.Charge();
+                }
+                else
+                {
+                    EquippedWeapon.Shoot();
+                }
+                
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && IsGrounded)
         {
             GameManager.instance.GetComponent<TurnHandler>().SwitchCharacter();
         }
