@@ -371,6 +371,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1333604498264106, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
   m_IsPrefabParent: 0
@@ -588,10 +592,10 @@ MonoBehaviour:
   character: {fileID: 1333604498264106, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
   startingPositions: {fileID: 1896545818}
   numberOfPlayers: 2
-  turnTimer: 3
-  resetTurnTimer: 3
-  inBetweenTurnTimer: 1.5
-  resetInBetweenTurnTimer: 1.5
+  turnTimer: 5
+  resetTurnTimer: 5
+  inBetweenTurnTimer: 1
+  resetInBetweenTurnTimer: 1
 --- !u!114 &1406803402
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,10 +11,16 @@ public class Controller : MonoBehaviour {
         data = GetComponentInParent<CharacterData>();
     }
 
-    void Update () {
-        if (Input.GetKey(KeyCode.Space))
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("jump " + data.characterName);
         }
-	}
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            GameManager.instance.GetComponent<TurnHandler>().SwitchCharacter();
+        }
+    }
 }

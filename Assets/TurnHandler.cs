@@ -19,6 +19,7 @@ public class TurnHandler : MonoBehaviour {
     public float resetTurnTimer = 3.0f;
 
     int currentPlayerTurn = 0;
+    int currentCharacterSelected = 0;
 
     GameObject activeCameraRef;
 
@@ -75,6 +76,7 @@ public class TurnHandler : MonoBehaviour {
 
     void NextTurn()
     {
+        currentCharacterSelected = 0;
         currentPlayerTurn++;
         currentPlayerTurn %= numberOfPlayers;
 
@@ -86,5 +88,23 @@ public class TurnHandler : MonoBehaviour {
         activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
         characters[currentPlayerTurn][0].hasControl = true;
         characters[currentPlayerTurn][0].controllerRef.enabled = true;
+    }
+
+    public void SwitchCharacter()
+    {
+        if (!hasTurnStarted)
+            return;
+
+        currentCharacterSelected++;
+        currentCharacterSelected %= startingPositions.childCount/numberOfPlayers;
+
+        activeCameraRef.GetComponentInParent<CharacterData>().hasControl = false;
+        activeCameraRef.GetComponentInParent<CharacterData>().controllerRef.enabled = false;
+        activeCameraRef.SetActive(false);
+
+        characters[currentPlayerTurn][currentCharacterSelected].cameraRef.SetActive(true);
+        activeCameraRef = characters[currentPlayerTurn][currentCharacterSelected].cameraRef;
+        characters[currentPlayerTurn][currentCharacterSelected].hasControl = true;
+        characters[currentPlayerTurn][currentCharacterSelected].controllerRef.enabled = true;
     }
 }
