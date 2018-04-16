@@ -12,5 +12,6 @@ public class WeaponWithProjectile : Weapon {
         GameObject instance = Instantiate(projectile, GetComponentInChildren<ProjectilePosition>().transform.position, GetComponentInChildren<ProjectilePosition>().transform.rotation, null);
         instance.AddComponent<Rigidbody>();
         instance.GetComponent<Rigidbody>().AddForce(instance.transform.up * weaponPower, ForceMode.Impulse);
+        instance.GetComponentInChildren<ProjectileHandler>().damage = damage;
     }
 }

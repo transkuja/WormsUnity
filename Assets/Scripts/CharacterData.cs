@@ -19,6 +19,20 @@ public class CharacterData : MonoBehaviour {
 
     bool isCharacterInitialized = false;
 
+    public int Health
+    {
+        get
+        {
+            return health;
+        }
+
+        set
+        {
+            health = value;
+            canvas.transform.GetChild(1).GetComponent<Text>().text = health.ToString();
+        }
+    }
+
     public void Init(int _health, int _owner, bool _hasControl)
     {
         health = _health;
