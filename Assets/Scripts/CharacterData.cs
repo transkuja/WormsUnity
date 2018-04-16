@@ -18,6 +18,8 @@ public class CharacterData : MonoBehaviour {
 
 
     bool isCharacterInitialized = false;
+    Canvas canvas;
+    Text healthText;
 
     public int Health
     {
@@ -29,7 +31,7 @@ public class CharacterData : MonoBehaviour {
         set
         {
             health = value;
-            canvas.transform.GetChild(1).GetComponent<Text>().text = health.ToString();
+            healthText.text = health.ToString();
         }
     }
 
@@ -47,11 +49,12 @@ public class CharacterData : MonoBehaviour {
         characterName = GameManager.instance.names[Random.Range(0, GameManager.instance.names.Count)];
         GameManager.instance.names.Remove(characterName);
 
-        Canvas canvas = GetComponentInChildren<Canvas>();
+        canvas = GetComponentInChildren<Canvas>();
         canvas.transform.GetChild(0).GetComponent<Text>().text = characterName;
-        canvas.transform.GetChild(1).GetComponent<Text>().text = health.ToString();
+        healthText = canvas.transform.GetChild(1).GetComponent<Text>();
+        healthText.text = health.ToString();
         canvas.transform.GetChild(0).GetComponent<Text>().color = GameManager.instance.playerColors[_owner];
-        canvas.transform.GetChild(1).GetComponent<Text>().color = GameManager.instance.playerColors[_owner];
+        healthText.color = GameManager.instance.playerColors[_owner];
     }
 
 }
