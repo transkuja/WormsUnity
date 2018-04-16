@@ -44,6 +44,7 @@ public class TurnHandler : MonoBehaviour {
         characters[currentPlayerTurn][0].cameraRef.SetActive(true);
         activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
         characters[currentPlayerTurn][0].hasControl = true;
+        characters[currentPlayerTurn][0].controllerRef.enabled = true;
         GameManager.instance.uiRef.UpdateTimer(turnTimer);
     }
 
@@ -76,11 +77,14 @@ public class TurnHandler : MonoBehaviour {
     {
         currentPlayerTurn++;
         currentPlayerTurn %= numberOfPlayers;
+
+        activeCameraRef.GetComponentInParent<CharacterData>().hasControl = false;
+        activeCameraRef.GetComponentInParent<CharacterData>().controllerRef.enabled = false;
         activeCameraRef.SetActive(false);
 
         characters[currentPlayerTurn][0].cameraRef.SetActive(true);
         activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
-
         characters[currentPlayerTurn][0].hasControl = true;
+        characters[currentPlayerTurn][0].controllerRef.enabled = true;
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
+    public List<string> names;
+    public List<Color> playerColors;
 
     public UIHandler uiRef;
 
