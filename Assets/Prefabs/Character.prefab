@@ -47,6 +47,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1309696182431834
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4385184831133398}
+  - component: {fileID: 114696094443015360}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1332678467212206
 GameObject:
   m_ObjectHideFlags: 1
@@ -141,8 +157,9 @@ GameObject:
   - component: {fileID: 4165390778405976}
   - component: {fileID: 33262392775084154}
   - component: {fileID: 23608919603029392}
+  - component: {fileID: 114181461977111264}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Bazooka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +208,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: -0.3420201, w: 0.9396927}
   m_LocalPosition: {x: 0.03, y: 0.48, z: -0.72}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_Children: []
+  m_Children:
+  - {fileID: 4385184831133398}
   m_Father: {fileID: 4525161331308764}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40}
@@ -201,7 +219,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1949457539997766}
-  m_LocalRotation: {x: 0.20797266, y: -0, z: -0, w: 0.9781347}
+  m_LocalRotation: {x: -0.20797266, y: -0.00000004376348, z: -0.000000040913054, w: -0.9781347}
   m_LocalPosition: {x: 0, y: 3.71, z: -8.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -222,6 +240,19 @@ Transform:
   - {fileID: 4174831589928650}
   - {fileID: 4831270301732540}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4385184831133398
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309696182431834}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.37, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4165390778405976}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4525161331308764
@@ -419,6 +450,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114181461977111264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1553566569219140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838fc5407d5dc14469ca221461c0009f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponPower: 100
+  isAimAvailable: 0
+  projectile: {fileID: 1784565701478012, guid: d6f89f4e36c5be041925a668554b2b07, type: 2}
 --- !u!114 &114303721465086360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,6 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5cbcd6f072afb40812d2a429a41f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpStrength: 10
 --- !u!114 &114355643222696062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -545,6 +591,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114696094443015360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309696182431834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ec863ae0ed9484fb8e2c765e0b35a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114740168825982120
 MonoBehaviour:
   m_ObjectHideFlags: 1
