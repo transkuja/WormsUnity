@@ -107,4 +107,9 @@ public class TurnHandler : MonoBehaviour {
         characters[currentPlayerTurn][currentCharacterSelected].hasControl = true;
         characters[currentPlayerTurn][currentCharacterSelected].controllerRef.enabled = true;
     }
+
+    public void EquipWeapon(Weapon _weaponData)
+    {
+        characters[currentPlayerTurn][currentCharacterSelected].EquipWeapon(_weaponData);
+    }
 }

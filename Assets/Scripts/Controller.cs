@@ -86,6 +86,17 @@ public class Controller : MonoBehaviour {
         transform.Rotate(Vector3.up * Input.GetAxis("Horizontal"));
         rb.AddForce(transform.forward * moveSpeed * Input.GetAxis("Vertical"));
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (GameManager.instance.uiRef.inventory.gameObject.activeSelf)
+                GameManager.instance.uiRef.inventory.gameObject.SetActive(false);
+            else
+            {
+                GameManager.instance.uiRef.inventory.SetInventory(data.inventory);
+                GameManager.instance.uiRef.inventory.gameObject.SetActive(true);
+            }
+        }
     }
 
     void AimStateControls()
@@ -131,6 +142,9 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Tab) && IsGrounded)
         {
+            if (EquippedWeapon.isCharging)
+                EquippedWeapon.StopCharge();
+
             GameManager.instance.GetComponent<TurnHandler>().SwitchCharacter();
         }
 

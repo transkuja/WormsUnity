@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+public enum WeaponType { Bazooka, Finger, Dynamite, HolyGrenade }
 
+[System.Serializable]
 public class Weapon : MonoBehaviour {
     public float weaponPowerMax;
-
+    public WeaponType weaponType;
     public bool isAimAvailable;
     public int damage;
     public bool isChargeable;
@@ -14,8 +16,11 @@ public class Weapon : MonoBehaviour {
 
     public float aimSpeed;
 
+    public Sprite uiSprite;
+
     public virtual void Shoot()
     {
+        GameManager.instance.GetComponent<TurnHandler>().turnTimer = 5.0f;
         StopCharge();
     }
 

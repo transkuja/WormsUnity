@@ -21,6 +21,8 @@ public class CharacterData : MonoBehaviour {
     Canvas canvas;
     Text healthText;
 
+    public List<Weapon> inventory;
+
     public int Health
     {
         get
@@ -31,6 +33,8 @@ public class CharacterData : MonoBehaviour {
         set
         {
             health = value;
+            if (healthText == null)
+                healthText = canvas.transform.GetChild(1).GetComponent<Text>();
             healthText.text = health.ToString();
         }
     }
@@ -55,6 +59,17 @@ public class CharacterData : MonoBehaviour {
         healthText.text = health.ToString();
         canvas.transform.GetChild(0).GetComponent<Text>().color = GameManager.instance.playerColors[_owner];
         healthText.color = GameManager.instance.playerColors[_owner];
+
+        inventory.Add(GetComponentInChildren<Weapon>());
+    }
+
+    public void EquipWeapon(Weapon _weaponData)
+    {
+        Transform weaponSlot = GetComponentInChildren<WeaponSlot>().transform;
+        if (weaponSlot.childCount > 0)
+            Destroy(weaponSlot.GetChild(0).gameObject);
+
+
     }
 
 }

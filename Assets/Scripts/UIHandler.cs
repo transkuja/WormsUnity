@@ -11,6 +11,8 @@ public class UIHandler : MonoBehaviour {
     [SerializeField]
     public Slider chargeBar;
 
+    public Inventory inventory;
+
     void Start () {
 		
 	}
