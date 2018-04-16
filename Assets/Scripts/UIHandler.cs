@@ -8,7 +8,10 @@ public class UIHandler : MonoBehaviour {
     [SerializeField]
     GameObject timer;
 
-	void Start () {
+    [SerializeField]
+    public Slider chargeBar;
+
+    void Start () {
 		
 	}
 	

@@ -103,6 +103,15 @@ public class Controller : MonoBehaviour {
         else if (currentState == ControllerState.Aim)
             AimStateControls();
 
+        if (EquippedWeapon.isAimAvailable)
+            if (Input.GetKey(KeyCode.KeypadPlus))
+                EquippedWeapon.AdjustAim();
+            if (Input.GetKey(KeyCode.KeypadMinus))
+                EquippedWeapon.AdjustAim(true);
+
+        if (EquippedWeapon.isCharging && (Input.GetAxis("Vertical") > 0.1f || Input.GetAxis("Vertical") < -0.1f))
+            EquippedWeapon.StopCharge();
+
         // Shoot!
         if (Input.GetMouseButtonDown(1))
         {
