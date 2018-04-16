@@ -108,8 +108,8 @@ public class TurnHandler : MonoBehaviour {
         characters[currentPlayerTurn][currentCharacterSelected].controllerRef.enabled = true;
     }
 
-    public void EquipWeapon(Weapon _weaponData)
+    public bool EquipWeapon(Weapon _weaponData)
     {
-        characters[currentPlayerTurn][currentCharacterSelected].EquipWeapon(_weaponData);
+        return characters[currentPlayerTurn][currentCharacterSelected].EquipWeapon(_weaponData);
     }
 }

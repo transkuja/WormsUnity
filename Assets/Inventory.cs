@@ -16,6 +16,9 @@ public class Inventory : MonoBehaviour {
     [SerializeField]
     Sprite holyGrenadeSprite;
 
+   
+    public Text equipped;
+
     public void SetInventory(List<Weapon> _newInventory)
     {
         if (_newInventory.Count > 5)

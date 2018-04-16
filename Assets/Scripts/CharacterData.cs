@@ -59,17 +59,11 @@ public class CharacterData : MonoBehaviour {
         healthText.text = health.ToString();
         canvas.transform.GetChild(0).GetComponent<Text>().color = GameManager.instance.playerColors[_owner];
         healthText.color = GameManager.instance.playerColors[_owner];
-
-        inventory.Add(GetComponentInChildren<Weapon>());
     }
 
-    public void EquipWeapon(Weapon _weaponData)
+    public bool EquipWeapon(Weapon _weaponData)
     {
-        Transform weaponSlot = GetComponentInChildren<WeaponSlot>().transform;
-        if (weaponSlot.childCount > 0)
-            Destroy(weaponSlot.GetChild(0).gameObject);
-
-
+        return GetComponentInChildren<WeaponSlot>().EquipWeapon(_weaponData.weaponType);
     }
 
 }

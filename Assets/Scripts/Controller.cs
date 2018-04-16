@@ -114,14 +114,17 @@ public class Controller : MonoBehaviour {
         else if (currentState == ControllerState.Aim)
             AimStateControls();
 
-        if (EquippedWeapon.isAimAvailable)
-            if (Input.GetKey(KeyCode.KeypadPlus))
-                EquippedWeapon.AdjustAim();
+        if (EquippedWeapon != null)
+        {
+            if (EquippedWeapon.isAimAvailable)
+                if (Input.GetKey(KeyCode.KeypadPlus))
+                    EquippedWeapon.AdjustAim();
             if (Input.GetKey(KeyCode.KeypadMinus))
                 EquippedWeapon.AdjustAim(true);
 
-        if (EquippedWeapon.isCharging && (Input.GetAxis("Vertical") > 0.1f || Input.GetAxis("Vertical") < -0.1f))
-            EquippedWeapon.StopCharge();
+            if (EquippedWeapon.isCharging && (Input.GetAxis("Vertical") > 0.1f || Input.GetAxis("Vertical") < -0.1f))
+                EquippedWeapon.StopCharge();
+        }
 
         // Shoot!
         if (Input.GetMouseButtonDown(1))
@@ -142,7 +145,7 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Tab) && IsGrounded)
         {
-            if (EquippedWeapon.isCharging)
+            if (EquippedWeapon != null && EquippedWeapon.isCharging)
                 EquippedWeapon.StopCharge();
 
             GameManager.instance.GetComponent<TurnHandler>().SwitchCharacter();

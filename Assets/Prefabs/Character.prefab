@@ -124,6 +124,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4525161331308764}
+  - component: {fileID: 114757227299279162}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -171,7 +172,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1949457539997766}
-  m_LocalRotation: {x: -0.20790267, y: -0.000019755418, z: 0.000004148467, w: -0.97814953}
+  m_LocalRotation: {x: -0.20790267, y: -0.00007744973, z: 0.000016411224, w: -0.97814953}
   m_LocalPosition: {x: 0, y: 3.71, z: -8.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -512,6 +513,22 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 100
+--- !u!114 &114757227299279162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1529474006574198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75ac500b945d88746bbf7089ab7eac7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bazookaPrefab: {fileID: 1101702949086690, guid: e486c0f75d6f89e4cbca168301ad1fc6,
+    type: 2}
+  holyGrenadePrefab: {fileID: 0}
+  fingerPrefab: {fileID: 0}
+  dynamitePrefab: {fileID: 0}
 --- !u!114 &114933825823965724
 MonoBehaviour:
   m_ObjectHideFlags: 1
