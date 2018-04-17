@@ -24,8 +24,10 @@ public class ProjectileHandler : MonoBehaviour {
     private void OnCollisionEnter(Collision collision)
     {
         Collider[] surroundings = Physics.OverlapSphere(transform.position, explosionRadius);
+
         if (surroundings != null && surroundings.Length > 0)
         {
+            GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(surroundings);
             for (int i = 0; i < surroundings.Length; i++)
             {
                 if (surroundings[i].transform.GetComponentInParent<CharacterData>())

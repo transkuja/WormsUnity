@@ -24,8 +24,8 @@ public class TurnHandler : MonoBehaviour {
     GameObject activeCameraRef;
 
     // In between turns timer
-    public float inBetweenTurnTimer = 1.5f;
-    public float resetInBetweenTurnTimer = 1.5f;
+    public float inBetweenTurnDelay = 2.0f;
+    public float cameraLerpTimer = 1.5f;
 
     void Start () {
         characters = new List<CharacterData>[numberOfPlayers];
@@ -47,6 +47,7 @@ public class TurnHandler : MonoBehaviour {
         characters[currentPlayerTurn][0].hasControl = true;
         characters[currentPlayerTurn][0].controllerRef.enabled = true;
         GameManager.instance.uiRef.UpdateTimer(turnTimer);
+        hasTurnStarted = true;
     }
 
     void Update () {
@@ -56,25 +57,14 @@ public class TurnHandler : MonoBehaviour {
             if (turnTimer < 0.0f)
             {
                 // Next turn
-                turnTimer = resetTurnTimer;
                 hasTurnStarted = false;
-                NextTurn();
+                StartCoroutine(NextTurn());
             }
             GameManager.instance.uiRef.UpdateTimer(turnTimer);
         }
-        else
-        {
-            // In between turns timer
-            inBetweenTurnTimer -= Time.deltaTime;
-            if (inBetweenTurnTimer < 0.0f)
-            {
-                inBetweenTurnTimer = resetInBetweenTurnTimer;
-                hasTurnStarted = true;
-            }
-        }
     }
 
-    void NextTurn()
+    IEnumerator NextTurn()
     {
         currentCharacterSelected = 0;
         currentPlayerTurn++;
@@ -82,12 +72,19 @@ public class TurnHandler : MonoBehaviour {
 
         activeCameraRef.GetComponentInParent<CharacterData>().hasControl = false;
         activeCameraRef.GetComponentInParent<CharacterData>().controllerRef.enabled = false;
+
+        yield return new WaitForSeconds(inBetweenTurnDelay);
         activeCameraRef.SetActive(false);
 
         characters[currentPlayerTurn][0].cameraRef.SetActive(true);
         activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
+
+        yield return new WaitForSeconds(cameraLerpTimer);
+        turnTimer = resetTurnTimer;
         characters[currentPlayerTurn][0].hasControl = true;
         characters[currentPlayerTurn][0].controllerRef.enabled = true;
+
+        hasTurnStarted = true;
     }
 
     public void SwitchCharacter()
@@ -111,5 +108,19 @@ public class TurnHandler : MonoBehaviour {
     public bool EquipWeapon(Weapon _weaponData)
     {
         return characters[currentPlayerTurn][currentCharacterSelected].EquipWeapon(_weaponData);
+    }
+
+    public void CheckSelfDamage(Collider[] _explosionCollateralDamages)
+    {
+        for (int i = 0; i < _explosionCollateralDamages.Length; i++)
+        {
+            if (_explosionCollateralDamages[i].GetComponentInParent<CharacterData>() 
+                && _explosionCollateralDamages[i].GetComponentInParent<CharacterData>() == characters[currentPlayerTurn][currentCharacterSelected])
+            {
+                characters[currentPlayerTurn][currentCharacterSelected].hasControl = false;
+                characters[currentPlayerTurn][currentCharacterSelected].controllerRef.enabled = false;
+                turnTimer = 0.0f;
+            }
+        }
     }
 }
