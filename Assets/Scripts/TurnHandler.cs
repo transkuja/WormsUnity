@@ -89,6 +89,8 @@ public class TurnHandler : MonoBehaviour {
         CratesSpawn();
         yield return new WaitForSeconds(inBetweenTurnDelay);
         activeCameraRef.SetActive(false);
+        if (activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow == null)
+            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
 
         characters[currentPlayerTurn][0].cameraRef.SetActive(true);
         activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
@@ -168,6 +170,7 @@ public class TurnHandler : MonoBehaviour {
             {
                 characters[currentPlayerTurn][currentCharacterSelected].hasControl = false;
                 characters[currentPlayerTurn][currentCharacterSelected].controllerRef.enabled = false;
+                activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = null;
                 turnTimer = 0.0f;
             }
         }
