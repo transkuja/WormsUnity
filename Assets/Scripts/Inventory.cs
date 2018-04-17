@@ -40,7 +40,7 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    Sprite GetSprite(WeaponType _weaponType)
+    public Sprite GetSprite(WeaponType _weaponType)
     {
         switch (_weaponType)
         {

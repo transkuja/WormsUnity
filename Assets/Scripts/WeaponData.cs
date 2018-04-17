@@ -16,10 +16,13 @@ public class WeaponData : MonoBehaviour, IPointerClickHandler {
                 if (GameManager.instance.GetComponent<TurnHandler>().EquipWeapon(weaponData))
                 {
                     GetComponentInParent<Inventory>().equipped.transform.SetParent(transform);
+                    GameManager.instance.uiRef.equippedSlot.enabled = true;
+                    GameManager.instance.uiRef.equippedSlot.sprite = GetComponentInParent<Inventory>().GetSprite(weaponData.weaponType);
                     GetComponentInParent<Inventory>().equipped.gameObject.SetActive(true);
                 }
                 else
                 {
+                    GameManager.instance.uiRef.equippedSlot.enabled = false;
                     GetComponentInParent<Inventory>().equipped.gameObject.SetActive(false);
                 }
 

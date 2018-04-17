@@ -12,6 +12,7 @@ public class UIHandler : MonoBehaviour {
     public Slider chargeBar;
 
     public Inventory inventory;
+    public Image equippedSlot;
 
     void Start () {
 		
