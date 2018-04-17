@@ -18,6 +18,7 @@ public class WeaponSlot : MonoBehaviour {
         {
             case WeaponType.Bazooka:
                 newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().bazookaPrefab, transform);
+                newWeapon.transform.localPosition = new Vector3(-0.396f, -0.111f, -0.72f);
                 break;
             case WeaponType.HolyGrenade:
                 newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().holyGrenadePrefab, transform);
