@@ -27,7 +27,7 @@ public class ProjectileHandler : MonoBehaviour {
 
         if (surroundings != null && surroundings.Length > 0)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 6; i++)
                 GameManager.instance.craterMaker.MakeCrater(Terrain.activeTerrain.GetComponent<Collider>().ClosestPoint(collision.contacts[0].point));
             GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(surroundings);
             for (int i = 0; i < surroundings.Length; i++)

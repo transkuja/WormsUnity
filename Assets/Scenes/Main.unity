@@ -1078,8 +1078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109c1cfba9d70ed48b2204485ff5d3d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craterTexture: {fileID: 2800000, guid: d939a71e7504c17489d6cbe20d3ba1ec, type: 3}
-  craterTextureToApply: {fileID: 2800000, guid: dc499589f0343f94eaa867f0001efc8e,
+  craterTexture: {fileID: 2800000, guid: b711eac8b89959e409787d721f6a63a3, type: 3}
+  craterTextureToApply: {fileID: 2800000, guid: c9cf2b2e8a163bb409a2986421a20082,
     type: 3}
   xResHeight: 0
   yResHeight: 0
