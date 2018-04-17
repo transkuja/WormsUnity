@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,11 +18,20 @@ public class WeaponData : MonoBehaviour, IPointerClickHandler {
                     GetComponentInParent<Inventory>().equipped.transform.SetParent(transform);
                     GameManager.instance.uiRef.equippedSlot.enabled = true;
                     GameManager.instance.uiRef.equippedSlot.sprite = GetComponentInParent<Inventory>().GetSprite(weaponData.weaponType);
+                    if (weaponData.hasAmmo)
+                    {
+                        GameManager.instance.uiRef.equippedSlot.GetComponentInChildren<Text>().enabled = true;
+                        GameManager.instance.uiRef.equippedSlot.GetComponentInChildren<Text>().text = weaponData.ammo.ToString();
+                    }
+                    else
+                        GameManager.instance.uiRef.equippedSlot.GetComponentInChildren<Text>().enabled = false;
+
                     GetComponentInParent<Inventory>().equipped.gameObject.SetActive(true);
                 }
                 else
                 {
                     GameManager.instance.uiRef.equippedSlot.enabled = false;
+                    GameManager.instance.uiRef.equippedSlot.GetComponentInChildren<Text>().enabled = false;
                     GetComponentInParent<Inventory>().equipped.gameObject.SetActive(false);
                 }
 

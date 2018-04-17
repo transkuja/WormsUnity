@@ -31,6 +31,13 @@ public class Inventory : MonoBehaviour {
         {
             transform.GetChild(i).GetComponent<Image>().sprite = GetSprite(_newInventory[i].weaponType);
             transform.GetChild(i).GetComponent<WeaponData>().weaponData = _newInventory[i];
+            if (_newInventory[i].hasAmmo)
+            {
+                transform.GetChild(i).GetComponentInChildren<Text>().text = _newInventory[i].ammo.ToString();
+                transform.GetChild(i).GetComponentInChildren<Text>().enabled = true;
+            }
+            else
+                transform.GetChild(i).GetComponentInChildren<Text>().enabled = false;
         }
 
 
@@ -38,6 +45,7 @@ public class Inventory : MonoBehaviour {
         {
             transform.GetChild(i).GetComponent<Image>().sprite = emptySprite;
             transform.GetChild(i).GetComponent<WeaponData>().weaponData = null;
+            transform.GetChild(i).GetComponentInChildren<Text>().enabled = false;
         }
     }
 
