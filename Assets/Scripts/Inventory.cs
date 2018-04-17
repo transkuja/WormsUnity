@@ -33,7 +33,8 @@ public class Inventory : MonoBehaviour {
             transform.GetChild(i).GetComponent<WeaponData>().weaponData = _newInventory[i];
         }
 
-        for (int i = _newInventory.Count; i < transform.childCount; i++)
+
+        for (int i = _newInventory.Count; i < transform.GetComponentsInChildren<WeaponData>().Length; i++)
         {
             transform.GetChild(i).GetComponent<Image>().sprite = emptySprite;
             transform.GetChild(i).GetComponent<WeaponData>().weaponData = null;
