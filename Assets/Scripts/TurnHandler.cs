@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnHandler : MonoBehaviour {
 
@@ -31,6 +32,9 @@ public class TurnHandler : MonoBehaviour {
     public float inBetweenTurnDelay = 2.0f;
     public float cameraLerpTimer = 1.5f;
 
+    bool isGameOver = false;
+    int winner = -1;
+
     public void KillCharacter(CharacterData _deadCharacter)
     {
         characters[_deadCharacter.owner].Remove(_deadCharacter);
@@ -38,6 +42,8 @@ public class TurnHandler : MonoBehaviour {
         tombInstance.transform.position = _deadCharacter.transform.position;
 
         Destroy(_deadCharacter.gameObject);
+
+        isGameOver = CheckEndGame();
     }
 
     public CharacterData GetCurrentCharacter()
@@ -101,6 +107,23 @@ public class TurnHandler : MonoBehaviour {
         return true;
     }
 
+    public bool CheckEndGame()
+    {
+        int playersAlive = 0;
+        for (int i = 0; i < numberOfPlayers; i++)
+        {
+            if (characters[i].Count > 0)
+            {
+                if (playersAlive == 0)
+                    winner = i;
+                playersAlive++;
+            }
+            if (playersAlive > 1)
+                return false;
+        }
+        return true;
+    }
+
     IEnumerator NextTurn()
     {
         while (!CheckAllWormsRecovered())
@@ -117,24 +140,39 @@ public class TurnHandler : MonoBehaviour {
         }
 
         CratesSpawn();
-        yield return new WaitForSeconds(inBetweenTurnDelay);
-        if (activeCameraRef != null)
+        if (isGameOver)
         {
-            activeCameraRef.SetActive(false);
-            if (activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow == null)
-                activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
+            // End game
+            EndGameProcess();
         }
+        else
+        {
+            yield return new WaitForSeconds(inBetweenTurnDelay);
+            if (activeCameraRef != null)
+            {
+                activeCameraRef.SetActive(false);
+                if (activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow == null)
+                    activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
+            }
 
-        characters[currentPlayerTurn][0].cameraRef.SetActive(true);
-        activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
+            characters[currentPlayerTurn][0].cameraRef.SetActive(true);
+            activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
 
-        yield return new WaitForSeconds(cameraLerpTimer);
-        turnTimer = resetTurnTimer;
-        characters[currentPlayerTurn][0].hasControl = true;
-        characters[currentPlayerTurn][0].controllerRef.enabled = true;
+            yield return new WaitForSeconds(cameraLerpTimer);
+            turnTimer = resetTurnTimer;
+            characters[currentPlayerTurn][0].hasControl = true;
+            characters[currentPlayerTurn][0].controllerRef.enabled = true;
 
-        SwitchUI();
-        hasTurnStarted = true;
+            SwitchUI();
+            hasTurnStarted = true;
+        }
+    }
+
+    void EndGameProcess()
+    {
+        GameManager.instance.uiRef.victoryScreen.SetActive(true);
+        GameManager.instance.uiRef.victoryScreen.GetComponentInChildren<Text>().text = "Player " + (winner + 1) + " wins!";
+        GameManager.instance.uiRef.victoryScreen.GetComponentInChildren<Text>().color = GameManager.instance.playerColors[winner];
     }
 
     public void SwitchCharacter()

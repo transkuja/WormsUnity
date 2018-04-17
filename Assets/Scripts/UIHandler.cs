@@ -13,6 +13,7 @@ public class UIHandler : MonoBehaviour {
 
     public Inventory inventory;
     public EquippedSlot equippedSlot;
+    public GameObject victoryScreen;
 
     void Start () {
 		
