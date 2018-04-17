@@ -1078,8 +1078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109c1cfba9d70ed48b2204485ff5d3d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craterTexture: {fileID: 2800000, guid: d4edafd148319b0499123848fea04aaf, type: 3}
-  craterTextureToApply: {fileID: 2800000, guid: 72c26139ab8d91c44a5464cfd82a76dc,
+  craterTexture: {fileID: 2800000, guid: d939a71e7504c17489d6cbe20d3ba1ec, type: 3}
+  craterTextureToApply: {fileID: 2800000, guid: dc499589f0343f94eaa867f0001efc8e,
     type: 3}
   xResHeight: 0
   yResHeight: 0
@@ -2312,6 +2312,7 @@ MonoBehaviour:
   - {r: 0.875, g: 0.09007351, b: 0.09007351, a: 1}
   - {r: 0.20588237, g: 0.5399594, b: 1, a: 1}
   uiRef: {fileID: 281878746}
+  craterMaker: {fileID: 766499373}
 --- !u!4 &1406803403
 Transform:
   m_ObjectHideFlags: 0
@@ -3285,7 +3286,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1896545817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 50.8, y: 12.57, z: 54.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1018935138}

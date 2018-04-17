@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     public List<Color> playerColors;
 
     public UIHandler uiRef;
+    public CraterMaker craterMaker;
 
     private void Awake()
     {
