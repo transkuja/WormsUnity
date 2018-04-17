@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour {
    
     public Text equipped;
 
-    public void SetInventory(List<Weapon> _newInventory)
+    public void SetInventory(Dictionary<WeaponType, int> _newInventory)
     {
         if (_newInventory.Count > 5)
         {
@@ -27,25 +27,29 @@ public class Inventory : MonoBehaviour {
             return;
         }
 
-        for (int i = 0; i < _newInventory.Count; i++)
+        int i = 0;
+        foreach (WeaponType wt in _newInventory.Keys)
         {
-            transform.GetChild(i).GetComponent<Image>().sprite = GetSprite(_newInventory[i].weaponType);
-            transform.GetChild(i).GetComponent<WeaponData>().weaponData = _newInventory[i];
-            if (_newInventory[i].hasAmmo)
+            transform.GetChild(i).GetComponent<Image>().sprite = GetSprite(wt);
+            transform.GetChild(i).GetComponent<WeaponData>().weaponData = wt;
+            transform.GetChild(i).GetComponent<WeaponData>().ammo = _newInventory[wt];
+
+            if (_newInventory[wt] != -1)
             {
-                transform.GetChild(i).GetComponentInChildren<Text>().text = _newInventory[i].ammo.ToString();
+                transform.GetChild(i).GetComponentInChildren<Text>().text = _newInventory[wt].ToString();
                 transform.GetChild(i).GetComponentInChildren<Text>().enabled = true;
             }
             else
                 transform.GetChild(i).GetComponentInChildren<Text>().enabled = false;
+            i++;
         }
 
 
-        for (int i = _newInventory.Count; i < transform.GetComponentsInChildren<WeaponData>().Length; i++)
+        for (int j = _newInventory.Count; j < transform.GetComponentsInChildren<WeaponData>().Length; j++)
         {
-            transform.GetChild(i).GetComponent<Image>().sprite = emptySprite;
-            transform.GetChild(i).GetComponent<WeaponData>().weaponData = null;
-            transform.GetChild(i).GetComponentInChildren<Text>().enabled = false;
+            transform.GetChild(j).GetComponent<Image>().sprite = emptySprite;
+            transform.GetChild(j).GetComponent<WeaponData>().weaponData = WeaponType.None;
+            transform.GetChild(j).GetComponentInChildren<Text>().enabled = false;
         }
     }
 

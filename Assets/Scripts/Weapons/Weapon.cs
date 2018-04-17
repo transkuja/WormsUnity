@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public enum WeaponType { Bazooka, Finger, Dynamite, HolyGrenade }
+public enum WeaponType { Bazooka, Finger, Dynamite, HolyGrenade, None }
 
 [System.Serializable]
 public class Weapon : MonoBehaviour {
@@ -27,7 +27,10 @@ public class Weapon : MonoBehaviour {
         if (hasAmmo)
         {
             ammo--;
-            GameManager.instance.GetComponent<TurnHandler>().DestroyWeapon(weaponType);
+            GameManager.instance.GetComponent<TurnHandler>().GetCurrentCharacter().inventory[weaponType]--;
+            GameManager.instance.uiRef.equippedSlot.UpdateSlot(weaponType, ammo);
+            if (ammo == 0)
+                GameManager.instance.GetComponent<TurnHandler>().DestroyWeapon(weaponType);
         }
         StopCharge();
     }

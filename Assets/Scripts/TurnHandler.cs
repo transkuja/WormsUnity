@@ -27,6 +27,11 @@ public class TurnHandler : MonoBehaviour {
     public float inBetweenTurnDelay = 2.0f;
     public float cameraLerpTimer = 1.5f;
 
+    public CharacterData GetCurrentCharacter()
+    {
+        return characters[currentPlayerTurn][currentCharacterSelected];
+    }
+
     void Start () {
         characters = new List<CharacterData>[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++)
@@ -111,13 +116,18 @@ public class TurnHandler : MonoBehaviour {
 
     void SwitchUI()
     {
-        if (characters[currentPlayerTurn][currentCharacterSelected].equippedWeapon != null)
+        if (characters[currentPlayerTurn][currentCharacterSelected].equippedWeapon != WeaponType.None)
         {
             // Equipped text
-            int weaponIndex = characters[currentPlayerTurn][currentCharacterSelected].inventory
-                .FindIndex(x => x.weaponType == characters[currentPlayerTurn][currentCharacterSelected].equippedWeapon.weaponType);
             GameManager.instance.uiRef.inventory.equipped.gameObject.SetActive(true);
-            GameManager.instance.uiRef.inventory.equipped.transform.SetParent(GameManager.instance.uiRef.inventory.transform.GetChild(weaponIndex));
+            foreach (WeaponData wd in GameManager.instance.uiRef.inventory.GetComponentsInChildren<WeaponData>())
+            {
+                if (wd.weaponData == characters[currentPlayerTurn][currentCharacterSelected].equippedWeapon)
+                {
+                    GameManager.instance.uiRef.inventory.equipped.transform.SetParent(wd.transform);
+                    break;
+                }
+            }
             GameManager.instance.uiRef.inventory.equipped.transform.localPosition = Vector3.zero;
         }
         else
@@ -126,12 +136,13 @@ public class TurnHandler : MonoBehaviour {
         }
 
         // Equipped slot
-        GameManager.instance.uiRef.equippedSlot.UpdateSlot(characters[currentPlayerTurn][currentCharacterSelected].equippedWeapon);
+        CharacterData currentCharacter = characters[currentPlayerTurn][currentCharacterSelected];
+        GameManager.instance.uiRef.equippedSlot.UpdateSlot(currentCharacter.equippedWeapon, (currentCharacter.equippedWeapon == WeaponType.None) ? -1 : currentCharacter.inventory[currentCharacter.equippedWeapon]);
     }
 
-    public bool EquipWeapon(Weapon _weaponData)
+    public bool EquipWeapon(WeaponType _weaponData, int _ammo)
     {
-        return characters[currentPlayerTurn][currentCharacterSelected].EquipWeapon(_weaponData);
+        return GetCurrentCharacter().EquipWeapon(_weaponData, _ammo);
     }
 
     public void CheckSelfDamage(Collider[] _explosionCollateralDamages)
@@ -150,7 +161,8 @@ public class TurnHandler : MonoBehaviour {
 
     public void DestroyWeapon(WeaponType _weapon)
     {
-        characters[currentPlayerTurn][currentCharacterSelected].inventory.Remove(characters[currentPlayerTurn][currentCharacterSelected].inventory.Find(x => x.weaponType == _weapon));
-        EquipWeapon(null);
+        GetCurrentCharacter().inventory.Remove(_weapon);
+        GameManager.instance.uiRef.equippedSlot.UpdateSlot(WeaponType.None, -1);
+        EquipWeapon(WeaponType.None, -1);
     }
 }

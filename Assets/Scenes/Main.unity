@@ -601,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12b869a462f8db4fa903d8fd7c20e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 0}
+  weaponData: 4
 --- !u!114 &367571248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,7 +1090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12b869a462f8db4fa903d8fd7c20e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 0}
+  weaponData: 4
 --- !u!114 &998044415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2223,7 +2223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12b869a462f8db4fa903d8fd7c20e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 0}
+  weaponData: 4
 --- !u!114 &1628764058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2398,6 +2398,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 114063708193512684, guid: eb63faa7ce2cedb4ea21616893ee335b,
+        type: 2}
+      propertyPath: ammo
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb63faa7ce2cedb4ea21616893ee335b, type: 2}
   m_IsPrefabParent: 0
@@ -2449,7 +2454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12b869a462f8db4fa903d8fd7c20e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 0}
+  weaponData: 4
 --- !u!114 &1764263485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2964,7 +2969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12b869a462f8db4fa903d8fd7c20e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponData: {fileID: 0}
+  weaponData: 4
 --- !u!114 &2106724942
 MonoBehaviour:
   m_ObjectHideFlags: 0

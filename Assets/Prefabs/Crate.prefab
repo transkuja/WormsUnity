@@ -122,5 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
+  ammo: 2
   bazookaPrefab: {fileID: 1101702949086690, guid: e486c0f75d6f89e4cbca168301ad1fc6,
     type: 2}

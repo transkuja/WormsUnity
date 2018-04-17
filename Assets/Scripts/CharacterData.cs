@@ -21,9 +21,9 @@ public class CharacterData : MonoBehaviour {
     Canvas canvas;
     Text healthText;
 
-    public List<Weapon> inventory;
+    public Dictionary<WeaponType, int> inventory = new Dictionary<WeaponType, int>();
 
-    public Weapon equippedWeapon;
+    public WeaponType equippedWeapon = WeaponType.None;
 
     public int Health
     {
@@ -65,10 +65,10 @@ public class CharacterData : MonoBehaviour {
         healthText.color = GameManager.instance.playerColors[_owner];
     }
 
-    public bool EquipWeapon(Weapon _weaponData)
+    public bool EquipWeapon(WeaponType _weaponData, int _ammo)
     {
         equippedWeapon = _weaponData;
-        return GetComponentInChildren<WeaponSlot>().EquipWeapon(_weaponData);
+        return GetComponentInChildren<WeaponSlot>().EquipWeapon(_weaponData, _ammo);
     }
 
 }
