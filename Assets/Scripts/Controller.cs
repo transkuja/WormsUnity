@@ -42,15 +42,30 @@ public class Controller : MonoBehaviour {
         {
             isGrounded = value;
             if (isGrounded)
-                rb.drag = 15.0f;
+                Rb.drag = 15.0f;
             else
-                rb.drag = 0.0f;
+                Rb.drag = 0.0f;
+        }
+    }
+
+    public Rigidbody Rb
+    {
+        get
+        {
+            if (rb == null)
+                rb = GetComponent<Rigidbody>();
+            return rb;
+        }
+
+        set
+        {
+            rb = value;
         }
     }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        Rb = GetComponent<Rigidbody>();
         data = GetComponentInParent<CharacterData>();
         currentState = ControllerState.Move;
     }
@@ -80,12 +95,12 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+            Rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
         }
 
         transform.Rotate(Vector3.up * Input.GetAxis("Horizontal"));
-        rb.AddForce(transform.forward * moveSpeed * Input.GetAxis("Vertical"));
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        Rb.AddForce(transform.forward * moveSpeed * Input.GetAxis("Vertical"));
+        Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxSpeed);
 
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -152,5 +167,16 @@ public class Controller : MonoBehaviour {
         }
 
 
+    }
+
+    public IEnumerator ResetRigidbody()
+    {
+        while (Rb.constraints != RigidbodyConstraints.FreezeRotation)
+        {
+            yield return new WaitForSeconds(2.0f);
+            // TODO: add condition here
+            Rb.constraints = RigidbodyConstraints.FreezeRotation;
+            transform.rotation = Quaternion.identity;
+        }
     }
 }

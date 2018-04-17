@@ -18,6 +18,9 @@ public class Weapon : MonoBehaviour {
 
     public Sprite uiSprite;
 
+    public int ammo;
+    public bool hasAmmo;
+
     public virtual void Shoot()
     {
         GameManager.instance.GetComponent<TurnHandler>().turnTimer = 5.0f;

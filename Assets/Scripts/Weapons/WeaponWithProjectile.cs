@@ -6,7 +6,13 @@ public class WeaponWithProjectile : Weapon {
 
     [SerializeField]
     GameObject projectile;
-    
+
+    [SerializeField]
+    float explosionRadius;
+
+    [SerializeField]
+    float explosionForce;
+
     public override void Shoot()
     {
         base.Shoot();
@@ -18,6 +24,6 @@ public class WeaponWithProjectile : Weapon {
         else
             instance.GetComponent<Rigidbody>().AddForce(instance.transform.up * weaponPowerMax, ForceMode.Impulse);
 
-        instance.GetComponentInChildren<ProjectileHandler>().damage = damage;
+        instance.GetComponentInChildren<ProjectileHandler>().Init(damage, explosionRadius, explosionForce);
     }
 }

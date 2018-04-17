@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ProjectileHandler : MonoBehaviour {
 
-    public int damage;
+    int damage;
+    float explosionRadius;
+    float explosionForce;
 
     IEnumerator Start()
     {
@@ -12,14 +14,52 @@ public class ProjectileHandler : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    public void Init(int _damage, float _explosionRadius, float _explosionForce)
+    {
+        damage = _damage;
+        explosionRadius = _explosionRadius;
+        explosionForce = _explosionForce;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.GetComponentInParent<CharacterData>())
+        Collider[] surroundings = Physics.OverlapSphere(transform.position, explosionRadius);
+        if (surroundings != null && surroundings.Length > 0)
         {
-            collision.transform.GetComponentInParent<CharacterData>().Health -= damage;
+            for (int i = 0; i < surroundings.Length; i++)
+            {
+                if (surroundings[i].transform.GetComponentInParent<CharacterData>())
+                {
+                    if (Vector3.Distance(surroundings[i].transform.position, transform.position) < explosionRadius * 0.75f)
+                    {
+                        surroundings[i].transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                        surroundings[i].transform.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                        surroundings[i].transform.GetComponent<Controller>().StartCoroutine("ResetRigidbody");
+                    }
+                    surroundings[i].transform.GetComponentInParent<CharacterData>().Health -= (int)(damage * ((explosionRadius - Vector3.Distance(surroundings[i].transform.position, transform.position)) / explosionRadius));
+                }
+
+                if (surroundings[i].tag == "Destructible")
+                {
+                    if (Vector3.Distance(surroundings[i].transform.position, transform.position) < explosionRadius / 2.0f)
+                    {
+                        Destroy(surroundings[i].gameObject, 0.1f);
+                    }
+                    else
+                    {
+                        surroundings[i].GetComponent<Rigidbody>().useGravity = true;
+                        surroundings[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                    }
+                }
+            }
         }
 
-        // TODO: radial damage
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawSphere(transform.position, explosionRadius);
     }
 }

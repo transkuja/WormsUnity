@@ -36,6 +36,8 @@ public class CharacterData : MonoBehaviour {
             if (healthText == null)
                 healthText = canvas.transform.GetChild(1).GetComponent<Text>();
             healthText.text = health.ToString();
+
+
         }
     }
 
