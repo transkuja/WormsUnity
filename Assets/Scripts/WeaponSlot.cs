@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class WeaponSlot : MonoBehaviour {
 
-    [SerializeField]
-    GameObject bazookaPrefab;
-    [SerializeField]
-    GameObject holyGrenadePrefab;
-    [SerializeField]
-    GameObject fingerPrefab;
-    [SerializeField]
-    GameObject dynamitePrefab;
-
     public bool EquipWeapon(WeaponType _weaponType)
     {
         if (transform.childCount > 0)
@@ -25,16 +16,16 @@ public class WeaponSlot : MonoBehaviour {
         switch(_weaponType)
         {
             case WeaponType.Bazooka:
-                Instantiate(bazookaPrefab, transform);
+                Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().bazookaPrefab, transform);
                 break;
             case WeaponType.HolyGrenade:
-                Instantiate(holyGrenadePrefab, transform);
+                Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().holyGrenadePrefab, transform);
                 break;
             case WeaponType.Finger:
-                Instantiate(fingerPrefab, transform);
+                Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().fingerPrefab, transform);
                 break;
             case WeaponType.Dynamite:
-                Instantiate(dynamitePrefab, transform);
+                Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().dynamitePrefab, transform);
                 break;
             default:
                 return false;

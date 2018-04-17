@@ -17,7 +17,9 @@ public class ProjectileHandler : MonoBehaviour {
         if (collision.transform.GetComponentInParent<CharacterData>())
         {
             collision.transform.GetComponentInParent<CharacterData>().Health -= damage;
-            Destroy(gameObject);
         }
+
+        // TODO: radial damage
+        Destroy(gameObject);
     }
 }
