@@ -38,7 +38,7 @@ public class ProjectileHandler : MonoBehaviour {
                         surroundings[i].transform.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
                         surroundings[i].transform.GetComponent<Controller>().StartCoroutine("ResetRigidbody");
                     }
-                    surroundings[i].transform.GetComponentInParent<CharacterData>().Health -= (int)(damage * ((explosionRadius - Vector3.Distance(surroundings[i].transform.position, transform.position)) / explosionRadius));
+                    surroundings[i].transform.GetComponentInParent<CharacterData>().Health -= (int)(damage * (Mathf.Clamp(((explosionRadius - Vector3.Distance(surroundings[i].transform.position, transform.position)) / explosionRadius), 0, 1)));
                 }
 
                 if (surroundings[i].tag == "Destructible")
