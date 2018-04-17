@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 223823394134654096}
   - component: {fileID: 114652478776184748}
   - component: {fileID: 114168931195227434}
+  - component: {fileID: 114765582089834474}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -524,11 +525,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ac500b945d88746bbf7089ab7eac7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bazookaPrefab: {fileID: 1101702949086690, guid: e486c0f75d6f89e4cbca168301ad1fc6,
-    type: 2}
-  holyGrenadePrefab: {fileID: 0}
-  fingerPrefab: {fileID: 0}
-  dynamitePrefab: {fileID: 0}
+--- !u!114 &114765582089834474
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1126097814166154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19920edd15d0e954e9ba0422efa2e778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114933825823965724
 MonoBehaviour:
   m_ObjectHideFlags: 1
