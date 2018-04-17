@@ -45,7 +45,19 @@ public class GroundControl : MonoBehaviour {
 
     void Update()
     {
-        IsGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+        IsGrounded = Physics.Raycast(transform.position + transform.forward * 0.3f, Vector3.down, 1.1f)
+            || Physics.Raycast(transform.position - transform.forward * 0.3f, Vector3.down, 1.1f)
+            || Physics.Raycast(transform.position + transform.right * 0.3f, Vector3.down, 1.1f)
+            || Physics.Raycast(transform.position - transform.right * 0.3f, Vector3.down, 1.1f);
 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position + transform.forward * 0.3f, transform.position + transform.forward * 0.3f + Vector3.down * 1.1f);
+        Gizmos.DrawLine(transform.position - transform.forward * 0.3f, transform.position - transform.forward * 0.3f + Vector3.down * 1.1f);
+        Gizmos.DrawLine(transform.position + transform.right * 0.3f, transform.position + transform.right * 0.3f + Vector3.down * 1.1f);
+        Gizmos.DrawLine(transform.position - transform.right * 0.3f, transform.position - transform.right * 0.3f + Vector3.down * 1.1f);
     }
 }
