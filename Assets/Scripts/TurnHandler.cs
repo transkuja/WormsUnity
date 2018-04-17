@@ -34,7 +34,11 @@ public class TurnHandler : MonoBehaviour {
     public void KillCharacter(CharacterData _deadCharacter)
     {
         characters[_deadCharacter.owner].Remove(_deadCharacter);
-        Instantiate(tomb, _deadCharacter.transform.position, Quaternion.identity, null);
+        GameObject tombInstance = Instantiate(tomb, null);
+        Debug.Log(_deadCharacter.transform.position);
+        tombInstance.transform.position = _deadCharacter.transform.position;
+        Debug.Log(tombInstance.transform.position);
+
         Destroy(_deadCharacter.gameObject);
     }
 
