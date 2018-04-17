@@ -37,8 +37,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4403541136370846}
-  - component: {fileID: 135102126956728246}
   - component: {fileID: 114406059248177064}
+  - component: {fileID: 136181808377938890}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec09cfd0b8225594a8efa4d19c745190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135102126956728246
-SphereCollider:
+--- !u!136 &136181808377938890
+CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -149,6 +149,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.58
-  m_Center: {x: 0, y: 0.88, z: -1.76}
+  m_Radius: 1.31
+  m_Height: 4.47
+  m_Direction: 1
+  m_Center: {x: -0.18, y: 0.34, z: -1.66}

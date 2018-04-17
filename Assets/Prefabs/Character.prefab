@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 54682076224768878}
   - component: {fileID: 136496884980405394}
   - component: {fileID: 114303721465086360}
+  - component: {fileID: 114547348601634410}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -428,6 +429,17 @@ MonoBehaviour:
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
   m_BiasY: 0
+--- !u!114 &114547348601634410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1510747933262374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e02a675bb67fb64bb0a4be120f5f53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114567124635217352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,7 +471,7 @@ MonoBehaviour:
   hasControl: 0
   cameraRef: {fileID: 0}
   controllerRef: {fileID: 0}
-  inventory: []
+  equippedWeapon: 4
 --- !u!114 &114652478776184748
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,11 +10,12 @@ public class Controller : MonoBehaviour {
 
     ControllerState currentState;
 
-    bool isGrounded = false;
     Weapon equippedWeapon;
 
     public float moveSpeed;
     public float maxSpeed;
+
+    GroundControl groundControl;
 
     public Weapon EquippedWeapon
     {
@@ -29,24 +30,7 @@ public class Controller : MonoBehaviour {
         {
             equippedWeapon = value;
         }
-    }
-
-    public bool IsGrounded
-    {
-        get
-        {
-            return isGrounded;
-        }
-
-        set
-        {
-            isGrounded = value;
-            if (isGrounded)
-                Rb.drag = 15.0f;
-            else
-                Rb.drag = 0.0f;
-        }
-    }
+    } 
 
     public Rigidbody Rb
     {
@@ -60,6 +44,21 @@ public class Controller : MonoBehaviour {
         set
         {
             rb = value;
+        }
+    }
+
+    public GroundControl GroundControl
+    {
+        get
+        {
+            if (groundControl == null)
+                groundControl = GetComponent<GroundControl>();
+            return groundControl;
+        }
+
+        set
+        {
+            groundControl = value;
         }
     }
 
@@ -78,7 +77,7 @@ public class Controller : MonoBehaviour {
     void MoveStateControls()
     {
         // Switch to aim mode
-        if (!IsGrounded)
+        if (GroundControl == null || !GroundControl.IsGrounded)
             return;
         
         if (Input.GetMouseButtonDown(0))
@@ -127,8 +126,6 @@ public class Controller : MonoBehaviour {
 
     void Update()
     {
-        IsGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
-
         if (currentState == ControllerState.Move)
             MoveStateControls();
         else if (currentState == ControllerState.Aim)
@@ -165,7 +162,7 @@ public class Controller : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab) && IsGrounded)
+        if (Input.GetKeyDown(KeyCode.Tab) && GroundControl.IsGrounded)
         {
             if (EquippedWeapon != null && EquippedWeapon.isCharging)
                 EquippedWeapon.StopCharge();
@@ -181,9 +178,12 @@ public class Controller : MonoBehaviour {
         while (Rb.constraints != RigidbodyConstraints.FreezeRotation)
         {
             yield return new WaitForSeconds(2.0f);
-            // TODO: add condition here
-            Rb.constraints = RigidbodyConstraints.FreezeRotation;
-            transform.rotation = Quaternion.identity;
+            if (Physics.Raycast(transform.position, Vector3.down, 1.5f))
+            {
+                // TODO: add condition here
+                Rb.constraints = RigidbodyConstraints.FreezeRotation;
+                transform.rotation = Quaternion.identity;
+            }
         }
     }
 

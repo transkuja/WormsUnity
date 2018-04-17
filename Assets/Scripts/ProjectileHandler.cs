@@ -35,7 +35,7 @@ public class ProjectileHandler : MonoBehaviour {
                     if (Vector3.Distance(surroundings[i].transform.position, transform.position) < explosionRadius * 0.75f)
                     {
                         surroundings[i].transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                        surroundings[i].transform.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                        surroundings[i].transform.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 5.0f);
                         surroundings[i].transform.GetComponent<Controller>().StartCoroutine("ResetRigidbody");
                     }
                     surroundings[i].transform.GetComponentInParent<CharacterData>().Health -= (int)(damage * (Mathf.Clamp(((explosionRadius - Vector3.Distance(surroundings[i].transform.position, transform.position)) / explosionRadius), 0, 1)));
@@ -50,7 +50,7 @@ public class ProjectileHandler : MonoBehaviour {
                     else
                     {
                         surroundings[i].GetComponent<Rigidbody>().useGravity = true;
-                        surroundings[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                        surroundings[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 5.0f);
                     }
                 }
             }

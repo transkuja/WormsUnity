@@ -35,9 +35,7 @@ public class TurnHandler : MonoBehaviour {
     {
         characters[_deadCharacter.owner].Remove(_deadCharacter);
         GameObject tombInstance = Instantiate(tomb, null);
-        Debug.Log(_deadCharacter.transform.position);
         tombInstance.transform.position = _deadCharacter.transform.position;
-        Debug.Log(tombInstance.transform.position);
 
         Destroy(_deadCharacter.gameObject);
     }
@@ -90,20 +88,42 @@ public class TurnHandler : MonoBehaviour {
             spawner.Spawn();
     }
 
+    bool CheckAllWormsRecovered()
+    {
+        for (int i = 0; i < numberOfPlayers; i++)
+        {
+            foreach (CharacterData data in characters[i])
+            {
+                if (data.GetComponentInChildren<Rigidbody>().constraints == RigidbodyConstraints.None)
+                    return false;
+            }
+        }
+        return true;
+    }
+
     IEnumerator NextTurn()
     {
+        while (!CheckAllWormsRecovered())
+            yield return new WaitForSeconds(0.5f);
+
         currentCharacterSelected = 0;
         currentPlayerTurn++;
         currentPlayerTurn %= numberOfPlayers;
 
-        activeCameraRef.GetComponentInParent<CharacterData>().hasControl = false;
-        activeCameraRef.GetComponentInParent<CharacterData>().controllerRef.enabled = false;
+        if (activeCameraRef != null)
+        {
+            activeCameraRef.GetComponentInParent<CharacterData>().hasControl = false;
+            activeCameraRef.GetComponentInParent<CharacterData>().controllerRef.enabled = false;
+        }
 
         CratesSpawn();
         yield return new WaitForSeconds(inBetweenTurnDelay);
-        activeCameraRef.SetActive(false);
-        if (activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow == null)
-            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
+        if (activeCameraRef != null)
+        {
+            activeCameraRef.SetActive(false);
+            if (activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow == null)
+                activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
+        }
 
         characters[currentPlayerTurn][0].cameraRef.SetActive(true);
         activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
