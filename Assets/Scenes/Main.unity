@@ -2207,6 +2207,17 @@ MonoBehaviour:
   - Philippe
   - Robert
   - Jean-Claude
+  - "Jean-Ren\xE9"
+  - Hector
+  - Hubert
+  - Noel Flantier
+  - Ginette
+  - Berangere
+  - Huguette
+  - Marguerite
+  - Yvette
+  - Saucisson
+  - Dumby
   playerColors:
   - {r: 0.875, g: 0.09007351, b: 0.09007351, a: 1}
   - {r: 0.20588237, g: 0.5399594, b: 1, a: 1}
