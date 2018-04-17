@@ -6,7 +6,13 @@ public class WeaponCrate : MonoBehaviour {
 
     public WeaponType weaponType;
     public int ammo;
-    public GameObject bazookaPrefab;
+
+    public void Init(WeaponType _weaponType, int _ammo = -1)
+    {
+        weaponType = _weaponType;
+        ammo = _ammo;
+        GetComponent<Renderer>().material.mainTexture = GameManager.instance.uiRef.inventory.GetSprite(weaponType).texture;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

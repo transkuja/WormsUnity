@@ -9,6 +9,8 @@ public class TurnHandler : MonoBehaviour {
 
     [SerializeField]
     Transform startingPositions;
+    [SerializeField]
+    Transform crateSpawners;
 
     List<CharacterData>[] characters;
 
@@ -69,6 +71,12 @@ public class TurnHandler : MonoBehaviour {
         }
     }
 
+    void CratesSpawn()
+    {
+        foreach (CrateSpawner spawner in crateSpawners.GetComponentsInChildren<CrateSpawner>())
+            spawner.Spawn();
+    }
+
     IEnumerator NextTurn()
     {
         currentCharacterSelected = 0;
@@ -78,6 +86,7 @@ public class TurnHandler : MonoBehaviour {
         activeCameraRef.GetComponentInParent<CharacterData>().hasControl = false;
         activeCameraRef.GetComponentInParent<CharacterData>().controllerRef.enabled = false;
 
+        CratesSpawn();
         yield return new WaitForSeconds(inBetweenTurnDelay);
         activeCameraRef.SetActive(false);
 
@@ -137,7 +146,12 @@ public class TurnHandler : MonoBehaviour {
 
         // Equipped slot
         CharacterData currentCharacter = characters[currentPlayerTurn][currentCharacterSelected];
-        GameManager.instance.uiRef.equippedSlot.UpdateSlot(currentCharacter.equippedWeapon, (currentCharacter.equippedWeapon == WeaponType.None) ? -1 : currentCharacter.inventory[currentCharacter.equippedWeapon]);
+        if (currentCharacter.inventory.ContainsKey(currentCharacter.equippedWeapon))
+        {
+            GameManager.instance.uiRef.equippedSlot.UpdateSlot(currentCharacter.equippedWeapon, currentCharacter.inventory[currentCharacter.equippedWeapon]);
+        }
+        else
+            GameManager.instance.uiRef.equippedSlot.UpdateSlot(WeaponType.None, -1);
     }
 
     public bool EquipWeapon(WeaponType _weaponData, int _ammo)
