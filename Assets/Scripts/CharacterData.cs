@@ -23,6 +23,8 @@ public class CharacterData : MonoBehaviour {
 
     public List<Weapon> inventory;
 
+    public Weapon equippedWeapon;
+
     public int Health
     {
         get
@@ -65,7 +67,8 @@ public class CharacterData : MonoBehaviour {
 
     public bool EquipWeapon(Weapon _weaponData)
     {
-        return GetComponentInChildren<WeaponSlot>().EquipWeapon(_weaponData.weaponType);
+        equippedWeapon = _weaponData;
+        return GetComponentInChildren<WeaponSlot>().EquipWeapon(_weaponData);
     }
 
 }

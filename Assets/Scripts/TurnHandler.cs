@@ -84,6 +84,7 @@ public class TurnHandler : MonoBehaviour {
         characters[currentPlayerTurn][0].hasControl = true;
         characters[currentPlayerTurn][0].controllerRef.enabled = true;
 
+        SwitchUI();
         hasTurnStarted = true;
     }
 
@@ -103,6 +104,29 @@ public class TurnHandler : MonoBehaviour {
         activeCameraRef = characters[currentPlayerTurn][currentCharacterSelected].cameraRef;
         characters[currentPlayerTurn][currentCharacterSelected].hasControl = true;
         characters[currentPlayerTurn][currentCharacterSelected].controllerRef.enabled = true;
+
+        // Handle ui switch
+        SwitchUI();
+    }
+
+    void SwitchUI()
+    {
+        if (characters[currentPlayerTurn][currentCharacterSelected].equippedWeapon != null)
+        {
+            // Equipped text
+            int weaponIndex = characters[currentPlayerTurn][currentCharacterSelected].inventory
+                .FindIndex(x => x.weaponType == characters[currentPlayerTurn][currentCharacterSelected].equippedWeapon.weaponType);
+            GameManager.instance.uiRef.inventory.equipped.gameObject.SetActive(true);
+            GameManager.instance.uiRef.inventory.equipped.transform.SetParent(GameManager.instance.uiRef.inventory.transform.GetChild(weaponIndex));
+            GameManager.instance.uiRef.inventory.equipped.transform.localPosition = Vector3.zero;
+
+            // Equipped slot
+            GameManager.instance.uiRef.equippedSlot
+        }
+        else
+        {
+            GameManager.instance.uiRef.inventory.equipped.gameObject.SetActive(false);
+        }
     }
 
     public bool EquipWeapon(Weapon _weaponData)
@@ -122,5 +146,11 @@ public class TurnHandler : MonoBehaviour {
                 turnTimer = 0.0f;
             }
         }
+    }
+
+    public void DestroyWeapon(WeaponType _weapon)
+    {
+        characters[currentPlayerTurn][currentCharacterSelected].inventory.Remove(characters[currentPlayerTurn][currentCharacterSelected].inventory.Find(x => x.weaponType == _weapon));
+        EquipWeapon(null);
     }
 }

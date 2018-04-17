@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class WeaponSlot : MonoBehaviour {
 
-    public bool EquipWeapon(WeaponType _weaponType)
+    public bool EquipWeapon(Weapon _weapon)
     {
         if (transform.childCount > 0)
         {
             Destroy(transform.GetChild(0).gameObject);
-            if (_weaponType == transform.GetComponentInChildren<Weapon>().weaponType)
+            if (_weapon == null || _weapon.weaponType == transform.GetComponentInChildren<Weapon>().weaponType)
                 return false;
         }
         
-        switch(_weaponType)
+        switch(_weapon.weaponType)
         {
             case WeaponType.Bazooka:
                 Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().bazookaPrefab, transform);

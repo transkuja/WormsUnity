@@ -24,6 +24,11 @@ public class Weapon : MonoBehaviour {
     public virtual void Shoot()
     {
         GameManager.instance.GetComponent<TurnHandler>().turnTimer = 5.0f;
+        if (hasAmmo)
+        {
+            ammo--;
+            GameManager.instance.GetComponent<TurnHandler>().DestroyWeapon(weaponType);
+        }
         StopCharge();
     }
 
