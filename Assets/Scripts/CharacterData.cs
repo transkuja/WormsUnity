@@ -10,7 +10,7 @@ public class CharacterData : MonoBehaviour {
     [SerializeField]
     int health;
     [SerializeField]
-    int owner;
+    public int owner;
 
     public bool hasControl;
     public GameObject cameraRef;
@@ -35,11 +35,16 @@ public class CharacterData : MonoBehaviour {
         set
         {
             health = value;
+
+            if (health < 0)
+                health = 0;
+
             if (healthText == null)
                 healthText = canvas.transform.GetChild(1).GetComponent<Text>();
             healthText.text = health.ToString();
 
-
+            if (health == 0)
+                GameManager.instance.GetComponent<TurnHandler>().KillCharacter(this);
         }
     }
 

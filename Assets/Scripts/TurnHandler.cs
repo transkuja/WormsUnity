@@ -6,6 +6,8 @@ public class TurnHandler : MonoBehaviour {
 
     [SerializeField]
     GameObject character;
+    [SerializeField]
+    GameObject tomb;
 
     [SerializeField]
     Transform startingPositions;
@@ -29,6 +31,13 @@ public class TurnHandler : MonoBehaviour {
     public float inBetweenTurnDelay = 2.0f;
     public float cameraLerpTimer = 1.5f;
 
+    public void KillCharacter(CharacterData _deadCharacter)
+    {
+        characters[_deadCharacter.owner].Remove(_deadCharacter);
+        Instantiate(tomb, _deadCharacter.transform.position, Quaternion.identity, null);
+        Destroy(_deadCharacter.gameObject);
+    }
+
     public CharacterData GetCurrentCharacter()
     {
         return characters[currentPlayerTurn][currentCharacterSelected];
@@ -44,7 +53,7 @@ public class TurnHandler : MonoBehaviour {
         for (int i = 0; i < startingPositions.childCount; i++)
         {
             GameObject newCharacter = Instantiate(character, startingPositions.GetChild(i).position, startingPositions.GetChild(i).rotation, null);
-            newCharacter.GetComponent<CharacterData>().Init(100, i % numberOfPlayers, false);
+            newCharacter.GetComponent<CharacterData>().Init(20, i % numberOfPlayers, false);
             characters[i % numberOfPlayers].Add(newCharacter.GetComponent<CharacterData>());
         }
 

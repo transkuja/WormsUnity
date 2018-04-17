@@ -11,7 +11,6 @@ public class WeaponCrate : MonoBehaviour {
     {
         weaponType = _weaponType;
         ammo = _ammo;
-        GetComponent<Renderer>().material.mainTexture = GameManager.instance.uiRef.inventory.GetSprite(weaponType).texture;
     }
 
     private void OnCollisionEnter(Collision collision)
