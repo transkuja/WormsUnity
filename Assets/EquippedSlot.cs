@@ -15,7 +15,7 @@ public class EquippedSlot : MonoBehaviour {
         else
         {
             GetComponent<Image>().enabled = true;
-            GetComponent<Image>().sprite = GetComponentInParent<Inventory>().GetSprite(_weaponData.weaponType);
+            GetComponent<Image>().sprite = GameManager.instance.uiRef.inventory.GetSprite(_weaponData.weaponType);
             if (_weaponData.hasAmmo)
             {
                 GetComponentInChildren<Text>().enabled = true;

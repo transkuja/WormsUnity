@@ -119,14 +119,14 @@ public class TurnHandler : MonoBehaviour {
             GameManager.instance.uiRef.inventory.equipped.gameObject.SetActive(true);
             GameManager.instance.uiRef.inventory.equipped.transform.SetParent(GameManager.instance.uiRef.inventory.transform.GetChild(weaponIndex));
             GameManager.instance.uiRef.inventory.equipped.transform.localPosition = Vector3.zero;
-
-            // Equipped slot
-            GameManager.instance.uiRef.equippedSlot
         }
         else
         {
             GameManager.instance.uiRef.inventory.equipped.gameObject.SetActive(false);
         }
+
+        // Equipped slot
+        GameManager.instance.uiRef.equippedSlot.UpdateSlot(characters[currentPlayerTurn][currentCharacterSelected].equippedWeapon);
     }
 
     public bool EquipWeapon(Weapon _weaponData)
