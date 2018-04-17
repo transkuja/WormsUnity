@@ -65,4 +65,14 @@ public class Inventory : MonoBehaviour {
                 return emptySprite;
         }
     }
+
+    public void ResetControllerState()
+    {
+        foreach (Controller c in FindObjectsOfType<Controller>())
+            if (c.enabled)
+            {
+                c.ResetState();
+                break;
+            }
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour {
-    enum ControllerState { Move, Aim }
+    enum ControllerState { Move, Aim, Inventory }
     CharacterData data;
     Rigidbody rb;
     public float jumpStrength;
@@ -104,13 +104,9 @@ public class Controller : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (GameManager.instance.uiRef.inventory.gameObject.activeSelf)
-                GameManager.instance.uiRef.inventory.gameObject.SetActive(false);
-            else
-            {
-                GameManager.instance.uiRef.inventory.SetInventory(data.inventory);
-                GameManager.instance.uiRef.inventory.gameObject.SetActive(true);
-            }
+            GameManager.instance.uiRef.inventory.SetInventory(data.inventory);
+            GameManager.instance.uiRef.inventory.gameObject.SetActive(true);
+            currentState = ControllerState.Inventory;
         }
     }
 
@@ -118,6 +114,15 @@ public class Controller : MonoBehaviour {
     {
         if (Input.GetMouseButtonUp(0))
             currentState = ControllerState.Move;
+    }
+
+    void InventoryControls()
+    {
+        if (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.instance.uiRef.inventory.gameObject.SetActive(false);
+            currentState = ControllerState.Move;
+        }
     }
 
     void Update()
@@ -128,6 +133,8 @@ public class Controller : MonoBehaviour {
             MoveStateControls();
         else if (currentState == ControllerState.Aim)
             AimStateControls();
+        else if (currentState == ControllerState.Inventory)
+            InventoryControls();
 
         if (EquippedWeapon != null)
         {
@@ -178,5 +185,10 @@ public class Controller : MonoBehaviour {
             Rb.constraints = RigidbodyConstraints.FreezeRotation;
             transform.rotation = Quaternion.identity;
         }
+    }
+
+    public void ResetState()
+    {
+        currentState = ControllerState.Move;
     }
 }
