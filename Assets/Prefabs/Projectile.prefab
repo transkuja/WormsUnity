@@ -37,8 +37,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4403541136370846}
-  - component: {fileID: 114406059248177064}
   - component: {fileID: 136181808377938890}
+  - component: {fileID: 114144005395893536}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -129,7 +129,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114406059248177064
+--- !u!114 &114144005395893536
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -137,9 +137,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784565701478012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec09cfd0b8225594a8efa4d19c745190, type: 3}
+  m_Script: {fileID: 11500000, guid: ccc0faa85d072294c82f3a34c06da015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 25
+  explosionRadius: 0
+  explosionForce: 0
+  explosionType: 1
+  explodesOnCollisionEnter: 1
+  delayedExplosion: 0
+  explosionDelay: 0
 --- !u!136 &136181808377938890
 CapsuleCollider:
   m_ObjectHideFlags: 1

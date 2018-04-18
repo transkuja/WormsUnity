@@ -205,3 +205,4 @@ MonoBehaviour:
   projectile: {fileID: 1784565701478012, guid: d6f89f4e36c5be041925a668554b2b07, type: 2}
   explosionRadius: 4
   explosionForce: 750
+  explosionType: 1

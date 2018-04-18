@@ -4,19 +4,8 @@ using UnityEngine;
 
 public enum ExplosionType { Small, Medium, Large }
 public class WeaponWithExploProjectile : Weapon {
-
-    
     [SerializeField]
     GameObject projectile;
-
-    [SerializeField]
-    float explosionRadius;
-
-    [SerializeField]
-    float explosionForce;
-
-    [SerializeField]
-    ExplosionType explosionType;
 
     public override void Shoot()
     {
@@ -29,6 +18,5 @@ public class WeaponWithExploProjectile : Weapon {
         else
             instance.GetComponent<Rigidbody>().AddForce(instance.transform.up * weaponPowerMax, ForceMode.Impulse);
 
-        instance.GetComponentInChildren<ProjectileHandler>().Init(damage, explosionRadius, explosionForce, explosionType);
     }
 }

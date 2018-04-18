@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileHandler : MonoBehaviour
-{
+public class ExplosiveProjectile : Projectile {
+    public int damage;
+    public float explosionRadius;
+    public float explosionForce;
+    public ExplosionType explosionType;
 
-    int damage;
-    float explosionRadius;
-    float explosionForce;
-    ExplosionType explosionType;
+    public bool explodesOnCollisionEnter;
+    public bool delayedExplosion;
+    public float explosionDelay;
 
-    IEnumerator Start()
+    private IEnumerator Start()
     {
-        yield return new WaitForSeconds(3.0f);
-        Destroy(gameObject);
-    }
-
-    public void Init(int _damage, float _explosionRadius, float _explosionForce, ExplosionType _exploType)
-    {
-        damage = _damage;
-        explosionRadius = _explosionRadius;
-        explosionForce = _explosionForce;
-        explosionType = _exploType;
+        if (delayedExplosion)
+        {
+            yield return new WaitForSeconds(explosionDelay);
+            Explode(transform.position);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
+    {
+        if (explodesOnCollisionEnter)
+            Explode(collision.contacts[0].point);
+    }
+
+    protected void Explode(Vector3 _explosionCenter)
     {
         Collider[] surroundings = Physics.OverlapSphere(transform.position, explosionRadius);
 
@@ -36,14 +39,14 @@ public class ProjectileHandler : MonoBehaviour
                 if (surroundings[i].transform.GetComponent<Terrain>())
                 {
                     int definitiveExplosionType = (int)explosionType;
-                    Vector3 terrainClosestPoint = surroundings[i].ClosestPoint(collision.contacts[0].point);
+                    Vector3 terrainClosestPoint = surroundings[i].ClosestPoint(_explosionCenter);
 
-                    if (Vector3.Distance(terrainClosestPoint, collision.contacts[0].point) > explosionRadius * 0.8f)
+                    if (Vector3.Distance(terrainClosestPoint, _explosionCenter) > explosionRadius * 0.8f)
                         definitiveExplosionType = (int)(ExplosionType.Small);
-                    else if (Vector3.Distance(terrainClosestPoint, collision.contacts[0].point) > explosionRadius * 0.4f)
+                    else if (Vector3.Distance(terrainClosestPoint, _explosionCenter) > explosionRadius * 0.4f)
                         definitiveExplosionType = Mathf.Max(definitiveExplosionType - 1, (int)ExplosionType.Small);
 
-                    GameManager.instance.craterMaker.MakeCrater(Terrain.activeTerrain.GetComponent<Collider>().ClosestPoint(collision.contacts[0].point), definitiveExplosionType);
+                    GameManager.instance.craterMaker.MakeCrater(Terrain.activeTerrain.GetComponent<Collider>().ClosestPoint(_explosionCenter), definitiveExplosionType);
 
                 }
 
@@ -74,6 +77,7 @@ public class ProjectileHandler : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     private void OnDrawGizmos()
     {
