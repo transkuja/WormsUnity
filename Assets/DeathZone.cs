@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class DeathZone : MonoBehaviour {
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.GetComponentInParent<CharacterData>())
+        if (other.transform.GetComponentInParent<CharacterData>())
         {
-            GameManager.instance.GetComponent<TurnHandler>().KillCharacter(collision.transform.GetComponentInParent<CharacterData>());
+            GameManager.instance.GetComponent<TurnHandler>().KillCharacter(other.transform.GetComponentInParent<CharacterData>());
         }
     }
 }

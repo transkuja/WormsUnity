@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour {
 
-    int nbPlayers = 2;
-    int nbWorms = 1;
+    public int nbPlayers = 2;
+    public int nbWorms = 1;
 
     [SerializeField]
     Text nbPlayersTxt;

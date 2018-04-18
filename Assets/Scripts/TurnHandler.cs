@@ -11,13 +11,14 @@ public class TurnHandler : MonoBehaviour {
     GameObject tomb;
 
     [SerializeField]
+    Menu menuData;
+
+    [SerializeField]
     Transform startingPositions;
     [SerializeField]
     Transform crateSpawners;
 
     List<CharacterData>[] characters;
-
-    public int numberOfPlayers = 2;
 
     bool hasTurnStarted = false;
     public float turnTimer = 3.0f;
@@ -97,20 +98,19 @@ public class TurnHandler : MonoBehaviour {
     }
 
     public void StartGame() {
-        characters = new List<CharacterData>[numberOfPlayers];
-        for (int i = 0; i < numberOfPlayers; i++)
+        characters = new List<CharacterData>[menuData.nbPlayers];
+        for (int i = 0; i < menuData.nbPlayers; i++)
         {
             characters[i] = new List<CharacterData>();
+            for (int j = 0; j < menuData.nbWorms; j++)
+            {
+                GameObject newCharacter = Instantiate(character, startingPositions.GetChild(i * 4 + j).position, startingPositions.GetChild(i * 4 + j).rotation, null);
+                newCharacter.GetComponent<CharacterData>().Init(20, i, false);
+                characters[i].Add(newCharacter.GetComponent<CharacterData>());
+            }
         }
 
-        for (int i = 0; i < startingPositions.childCount; i++)
-        {
-            GameObject newCharacter = Instantiate(character, startingPositions.GetChild(i).position, startingPositions.GetChild(i).rotation, null);
-            newCharacter.GetComponent<CharacterData>().Init(20, i % numberOfPlayers, false);
-            characters[i % numberOfPlayers].Add(newCharacter.GetComponent<CharacterData>());
-        }
-
-        currentPlayerTurn = Random.Range(0, numberOfPlayers);
+        currentPlayerTurn = Random.Range(0, menuData.nbPlayers);
         characters[currentPlayerTurn][0].cameraRef[0].SetActive(true);
         activeCameraRef = characters[currentPlayerTurn][0].cameraRef[0];
         characters[currentPlayerTurn][0].hasControl = true;
@@ -142,7 +142,7 @@ public class TurnHandler : MonoBehaviour {
 
     bool CheckAllWormsRecovered()
     {
-        for (int i = 0; i < numberOfPlayers; i++)
+        for (int i = 0; i < menuData.nbPlayers; i++)
         {
             foreach (CharacterData data in characters[i])
             {
@@ -156,7 +156,7 @@ public class TurnHandler : MonoBehaviour {
     public bool CheckEndGame()
     {
         int playersAlive = 0;
-        for (int i = 0; i < numberOfPlayers; i++)
+        for (int i = 0; i < menuData.nbPlayers; i++)
         {
             if (characters[i].Count > 0)
             {
@@ -176,7 +176,7 @@ public class TurnHandler : MonoBehaviour {
 
         currentCharacterSelected = 0;
         currentPlayerTurn++;
-        currentPlayerTurn %= numberOfPlayers;
+        currentPlayerTurn %= menuData.nbPlayers;
 
         if (activeCameraRef != null)
         {
@@ -229,7 +229,7 @@ public class TurnHandler : MonoBehaviour {
             return;
 
         currentCharacterSelected++;
-        currentCharacterSelected %= startingPositions.childCount/numberOfPlayers;
+        currentCharacterSelected %= startingPositions.childCount/ menuData.nbPlayers;
 
         activeCameraRef.GetComponentInParent<CharacterData>().hasControl = false;
         activeCameraRef.GetComponentInParent<CharacterData>().controllerRef.enabled = false;
