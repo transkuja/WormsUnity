@@ -142,11 +142,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 25
   explosionRadius: 5
-  explosionForce: 750
+  explosionForce: 500
   explosionType: 1
   explodesOnCollisionEnter: 1
   delayedExplosion: 0
   explosionDelay: 0
+  drawGizmos: 0
 --- !u!136 &136815018327283246
 CapsuleCollider:
   m_ObjectHideFlags: 1

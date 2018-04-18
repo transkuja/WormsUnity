@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ExplosionType { Small, Medium, Large }
-public class WeaponWithExploProjectile : Weapon {
+public class ThrowableWeapon : Weapon {
 
     public override void Shoot()
     {
@@ -12,17 +11,14 @@ public class WeaponWithExploProjectile : Weapon {
         );
 
         base.Shoot();
-    }
 
-    public override GameObject ProjectileHandling()
-    {
-        GameObject instance = base.ProjectileHandling();
+        GameObject instance = GameManager.instance.GetComponent<TurnHandler>().currentProjectileInstance;
+        instance.AddComponent<Rigidbody>();
 
         if (isChargeable)
             instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * currentCharge, ForceMode.Impulse);
         else
             instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * weaponPowerMax, ForceMode.Impulse);
 
-        return instance;
     }
 }

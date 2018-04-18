@@ -22,6 +22,7 @@ public class WeaponSlot : MonoBehaviour {
                 break;
             case WeaponType.HolyGrenade:
                 newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().holyGrenadePrefab, transform);
+                newWeapon.transform.localPosition = Vector3.forward;
                 break;
             case WeaponType.Finger:
                 newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().fingerPrefab, transform);

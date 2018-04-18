@@ -12,6 +12,8 @@ public class ExplosiveProjectile : Projectile {
     public bool delayedExplosion;
     public float explosionDelay;
 
+    public bool drawGizmos;
+
     private IEnumerator Start()
     {
         if (delayedExplosion)
@@ -87,7 +89,10 @@ public class ExplosiveProjectile : Projectile {
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(transform.position, explosionRadius);
+        if (drawGizmos)
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawSphere(transform.position, explosionRadius);
+        }
     }
 }

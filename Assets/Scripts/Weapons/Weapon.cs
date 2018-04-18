@@ -26,18 +26,27 @@ public class Weapon : MonoBehaviour {
 
     public virtual void Shoot()
     {
-        GameManager.instance.GetComponent<TurnHandler>().WeaponShot(
-            Instantiate(projectile, GetComponentInChildren<ProjectilePosition>().transform.position, GetComponentInChildren<ProjectilePosition>().transform.rotation, null)
-        );
         if (hasAmmo)
         {
             ammo--;
             GameManager.instance.GetComponent<TurnHandler>().GetCurrentCharacter().inventory[weaponType]--;
-            GameManager.instance.uiRef.equippedSlot.UpdateSlot(weaponType, ammo);
             if (ammo == 0)
                 GameManager.instance.GetComponent<TurnHandler>().DestroyWeapon(weaponType);
         }
+        else
+            GameManager.instance.GetComponent<TurnHandler>().DestroyWeapon(weaponType);
+
+        GameManager.instance.uiRef.equippedSlot.UpdateSlot(weaponType, ammo);
         StopCharge();
+
+        ProjectileHandling();
+    }
+
+    public virtual GameObject ProjectileHandling()
+    {
+        GameObject instance = GameManager.instance.GetComponent<TurnHandler>().currentProjectileInstance;
+        instance.AddComponent<Rigidbody>();
+        return instance;
     }
 
     public virtual void Charge()

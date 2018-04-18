@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ExplosionType { Small, Medium, Large }
-public class WeaponWithExploProjectile : Weapon {
+public class Grenade : Weapon {
 
     public override void Shoot()
     {
         GameManager.instance.GetComponent<TurnHandler>().WeaponShot(
-            Instantiate(projectile, GetComponentInChildren<ProjectilePosition>().transform.position, GetComponentInChildren<ProjectilePosition>().transform.rotation, null)
+            Instantiate(projectile, transform.position, transform.rotation, null)
         );
 
-        base.Shoot();
+        base.Shoot();     
     }
 
     public override GameObject ProjectileHandling()
