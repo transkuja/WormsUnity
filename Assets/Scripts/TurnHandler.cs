@@ -44,6 +44,11 @@ public class TurnHandler : MonoBehaviour {
 
     public void WeaponShot(GameObject _projectileInstance, bool _cameraShouldFollowProjectile = true, bool _cameraShouldOnlyLookAt = false)
     {
+        if (_projectileInstance.GetComponentInChildren<Projectile>().canMoveRightAfterUse)
+            GetCurrentCharacter().GetComponentInChildren<Controller>().SetToMoveOnly();
+        else
+            GetCurrentCharacter().GetComponentInChildren<Controller>().SetToBlocked();
+
         currentProjectileInstance = _projectileInstance;
         _projectileInstance.transform.SetParent(null);
 
@@ -74,6 +79,7 @@ public class TurnHandler : MonoBehaviour {
         if (!_selfDamaged)
         {
             turnTimer = 5.0f;
+            GetCurrentCharacter().GetComponentInChildren<Controller>().SetToMoveOnly();
             GetCurrentCharacter().cameraRef[1].SetActive(true);
         }
 

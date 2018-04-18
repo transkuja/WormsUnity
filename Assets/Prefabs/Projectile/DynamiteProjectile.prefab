@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc0faa85d072294c82f3a34c06da015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMoveRightAfterUse: 1
   damage: 30
   explosionRadius: 7
   explosionForce: 600

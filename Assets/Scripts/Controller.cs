@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour {
-    enum ControllerState { Move, Aim, Inventory }
+    enum ControllerState { Move, Aim, Inventory, MoveOnly, Blocked }
     CharacterData data;
     Rigidbody rb;
     public float jumpStrength;
 
+    [SerializeField]
     ControllerState currentState;
 
     Weapon equippedWeapon;
@@ -74,9 +75,18 @@ public class Controller : MonoBehaviour {
         currentState = ControllerState.Move;
     }
 
+    public void SetToMoveOnly()
+    {
+        currentState = ControllerState.MoveOnly;
+    }
+
+    public void SetToBlocked()
+    {
+        currentState = ControllerState.Blocked;
+    }
+
     void MoveStateControls()
     {
-        // Switch to aim mode
         if (GroundControl == null || !GroundControl.IsGrounded)
             return;
         
@@ -92,6 +102,21 @@ public class Controller : MonoBehaviour {
             }
         }
 
+        MoveControls();
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            GameManager.instance.uiRef.inventory.SetInventory(data.inventory);
+            GameManager.instance.uiRef.inventory.gameObject.SetActive(true);
+            currentState = ControllerState.Inventory;
+        }
+    }
+
+    void MoveControls()
+    {
+        if (GroundControl == null || !GroundControl.IsGrounded)
+            return;
+      
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
@@ -100,13 +125,6 @@ public class Controller : MonoBehaviour {
         transform.Rotate(Vector3.up * Input.GetAxis("Horizontal"));
         Rb.AddForce(transform.forward * moveSpeed * Input.GetAxis("Vertical"));
         Rb.velocity = Vector3.ClampMagnitude(Rb.velocity, maxSpeed);
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            GameManager.instance.uiRef.inventory.SetInventory(data.inventory);
-            GameManager.instance.uiRef.inventory.gameObject.SetActive(true);
-            currentState = ControllerState.Inventory;
-        }
     }
 
     void AimStateControls()
@@ -126,12 +144,21 @@ public class Controller : MonoBehaviour {
 
     void Update()
     {
+        if (currentState == ControllerState.Blocked)
+            return;
+        if (currentState == ControllerState.MoveOnly)
+        {
+            MoveControls();
+            return;
+        }
+
         if (currentState == ControllerState.Move)
             MoveStateControls();
         else if (currentState == ControllerState.Aim)
             AimStateControls();
         else if (currentState == ControllerState.Inventory)
             InventoryControls();
+
 
         if (EquippedWeapon != null)
         {
