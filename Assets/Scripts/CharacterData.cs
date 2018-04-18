@@ -26,6 +26,9 @@ public class CharacterData : MonoBehaviour {
 
     public WeaponType equippedWeapon = WeaponType.None;
 
+    [SerializeField]
+    GameObject minimapCursor;
+
     public int Health
     {
         get
@@ -75,6 +78,7 @@ public class CharacterData : MonoBehaviour {
         healthText.text = health.ToString();
         canvas.transform.GetChild(0).GetComponent<Text>().color = GameManager.instance.playerColors[_owner];
         healthText.color = GameManager.instance.playerColors[_owner];
+        minimapCursor.GetComponent<Renderer>().material.color = GameManager.instance.playerColors[_owner];
     }
 
     public bool EquipWeapon(WeaponType _weaponData, int _ammo)

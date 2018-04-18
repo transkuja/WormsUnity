@@ -39,6 +39,8 @@ public class TurnHandler : MonoBehaviour {
 
     public GameObject currentProjectileInstance;
 
+    public CameraMinimap cameraMinimap;
+
     public void WeaponShot(GameObject _projectileInstance, bool _cameraShouldFollowProjectile = true, bool _cameraShouldOnlyLookAt = false)
     {
         currentProjectileInstance = _projectileInstance;
@@ -113,6 +115,7 @@ public class TurnHandler : MonoBehaviour {
         characters[currentPlayerTurn][0].controllerRef.enabled = true;
         GameManager.instance.uiRef.UpdateTimer(turnTimer);
         hasTurnStarted = true;
+        cameraMinimap.ChangeTarget(GetCurrentCharacter().GetComponentInChildren<Rigidbody>().transform);
     }
 
     void Update () {
@@ -269,6 +272,8 @@ public class TurnHandler : MonoBehaviour {
         }
         else
             GameManager.instance.uiRef.equippedSlot.UpdateSlot(WeaponType.None, -1);
+
+        cameraMinimap.ChangeTarget(currentCharacter.GetComponentInChildren<Rigidbody>().transform);
     }
 
     public bool EquipWeapon(WeaponType _weaponData, int _ammo)
