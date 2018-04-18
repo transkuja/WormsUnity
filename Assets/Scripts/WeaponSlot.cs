@@ -18,11 +18,9 @@ public class WeaponSlot : MonoBehaviour {
         {
             case WeaponType.Bazooka:
                 newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().bazookaPrefab, transform);
-                newWeapon.transform.localPosition = new Vector3(-0.396f, -0.111f, -0.72f);
                 break;
             case WeaponType.HolyGrenade:
                 newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().holyGrenadePrefab, transform);
-                newWeapon.transform.localPosition = Vector3.forward;
                 break;
             case WeaponType.Finger:
                 newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().fingerPrefab, transform);
@@ -33,6 +31,7 @@ public class WeaponSlot : MonoBehaviour {
             default:
                 return false;
         }
+        newWeapon.transform.localPosition = Vector3.zero;
         newWeapon.GetComponent<Weapon>().ammo = _ammo;
         newWeapon.GetComponent<Weapon>().hasAmmo = (_ammo != -1);
         return true;

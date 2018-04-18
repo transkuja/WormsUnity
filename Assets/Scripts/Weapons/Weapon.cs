@@ -72,11 +72,6 @@ public class Weapon : MonoBehaviour {
         }
     }
 
-    public void AdjustAim(bool _adjustDown = false)
-    {
-        transform.localEulerAngles = new Vector3(
-            transform.localEulerAngles.x, 
-            transform.localEulerAngles.y, 
-            Mathf.Clamp(transform.localEulerAngles.z + ((_adjustDown) ? -1 : 1) * aimSpeed, 230, 320));
-    }
+    public virtual void AdjustAim(bool _adjustDown = false)
+    {}
 }

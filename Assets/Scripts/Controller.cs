@@ -136,10 +136,12 @@ public class Controller : MonoBehaviour {
         if (EquippedWeapon != null)
         {
             if (EquippedWeapon.isAimAvailable)
+            {
                 if (Input.GetKey(KeyCode.KeypadPlus))
                     EquippedWeapon.AdjustAim();
-            if (Input.GetKey(KeyCode.KeypadMinus))
-                EquippedWeapon.AdjustAim(true);
+                if (Input.GetKey(KeyCode.KeypadMinus))
+                    EquippedWeapon.AdjustAim(true);
+            }
 
             if (EquippedWeapon.isCharging && (Input.GetAxis("Vertical") > 0.1f || Input.GetAxis("Vertical") < -0.1f))
                 EquippedWeapon.StopCharge();

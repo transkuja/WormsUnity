@@ -18,10 +18,19 @@ public class Grenade : Weapon {
         GameObject instance = base.ProjectileHandling();
 
         if (isChargeable)
-            instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * currentCharge, ForceMode.Impulse);
+            instance.GetComponent<Rigidbody>().AddForce(-instance.transform.GetChild(0).up * currentCharge, ForceMode.Impulse);
         else
-            instance.GetComponent<Rigidbody>().AddForce(instance.transform.forward * weaponPowerMax, ForceMode.Impulse);
+            instance.GetComponent<Rigidbody>().AddForce(-instance.transform.GetChild(0).up * weaponPowerMax, ForceMode.Impulse);
 
         return instance;
+    }
+
+    public override void AdjustAim(bool _adjustDown = false)
+    {
+        transform.Rotate(((_adjustDown) ? -1 : 1) * aimSpeed * Vector3.right);
+
+        transform.localEulerAngles = new Vector3(Mathf.Clamp(transform.localEulerAngles.x, 1, 90),
+            transform.localEulerAngles.y, transform.localEulerAngles.z
+        );
     }
 }
