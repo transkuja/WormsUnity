@@ -96,7 +96,7 @@ public class TurnHandler : MonoBehaviour {
         return characters[currentPlayerTurn][currentCharacterSelected];
     }
 
-    void Start () {
+    public void StartGame() {
         characters = new List<CharacterData>[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++)
         {
