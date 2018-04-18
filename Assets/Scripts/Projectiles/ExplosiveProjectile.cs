@@ -31,11 +31,14 @@ public class ExplosiveProjectile : Projectile {
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.transform.GetComponent<Projectile>())
+            return;
+
         if (explodesOnCollisionEnter)
             Explode(collision.contacts[0].point);
     }
 
-    protected void Explode(Vector3 _explosionCenter)
+    protected virtual void Explode(Vector3 _explosionCenter)
     {
         Collider[] surroundings = Physics.OverlapSphere(transform.position, explosionRadius);
 
@@ -82,8 +85,13 @@ public class ExplosiveProjectile : Projectile {
                     }
                 }
             }
-            Destroy(gameObject);
+            AfterExplodeProcess();
         }
+    }
+
+    protected virtual void AfterExplodeProcess()
+    {
+        Destroy(gameObject);
     }
 
 

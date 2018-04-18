@@ -62,6 +62,7 @@ public class Inventory : MonoBehaviour {
             case WeaponType.Finger:
                 return fingerSprite;
             case WeaponType.HolyGrenade:
+            case WeaponType.ClusterGrenade:
                 return holyGrenadeSprite;
             case WeaponType.Bazooka:
                 return bazookaSprite;

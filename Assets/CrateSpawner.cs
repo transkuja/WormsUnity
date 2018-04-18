@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CrateSpawner : MonoBehaviour {
-    int[] ammoDefaultValues = { 2, -1, 2, 2, -1 };
+    int[] ammoDefaultValues = { 2, -1, 2, 2, -1, -1 };
     [SerializeField]
     GameObject[] crates;
     Collider spawnZone;

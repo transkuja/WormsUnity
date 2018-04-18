@@ -8,4 +8,5 @@ public class WeaponPrefabs : MonoBehaviour {
     public GameObject holyGrenadePrefab;
     public GameObject fingerPrefab;
     public GameObject dynamitePrefab;
+    public GameObject clusterGrenadePrefab;
 }
