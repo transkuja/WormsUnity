@@ -104,6 +104,9 @@ public class TurnHandler : MonoBehaviour {
     }
 
     public void StartGame() {
+        resetTurnTimer = menuData.turnTimer;
+        turnTimer = resetTurnTimer;
+
         characters = new List<CharacterData>[menuData.nbPlayers];
         for (int i = 0; i < menuData.nbPlayers; i++)
         {
