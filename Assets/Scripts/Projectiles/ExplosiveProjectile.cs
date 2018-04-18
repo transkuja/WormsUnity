@@ -19,6 +19,12 @@ public class ExplosiveProjectile : Projectile {
             yield return new WaitForSeconds(explosionDelay);
             Explode(transform.position);
         }
+        else
+        {
+            yield return new WaitForSeconds(5.0f);
+            Destroy(gameObject);
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -33,7 +39,7 @@ public class ExplosiveProjectile : Projectile {
 
         if (surroundings != null && surroundings.Length > 0)
         {
-            GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(surroundings);
+            GameManager.instance.GetComponent<TurnHandler>().WeaponEndProcess(GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(surroundings));
             for (int i = 0; i < surroundings.Length; i++)
             {
                 if (surroundings[i].transform.GetComponent<Terrain>())

@@ -35,6 +35,39 @@ public class TurnHandler : MonoBehaviour {
     bool isGameOver = false;
     int winner = -1;
 
+    bool isWaitingForWeaponEndProcess = false;
+
+    public GameObject currentProjectileInstance;
+
+    public void WeaponShot(GameObject _projectileInstance)
+    {
+        currentProjectileInstance = _projectileInstance;
+        activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = currentProjectileInstance.transform;
+        activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = currentProjectileInstance.transform;
+
+        isWaitingForWeaponEndProcess = true;
+        turnTimer = 0.0f;
+        GameManager.instance.uiRef.UpdateTimer(turnTimer);
+    }
+
+    public void WeaponEndProcess(bool _selfDamaged)
+    {
+        StartCoroutine(WeaponEndProcessCoroutine(_selfDamaged));
+    }
+
+    IEnumerator WeaponEndProcessCoroutine(bool _selfDamaged)
+    {
+        yield return new WaitForSeconds(1.0f);
+        if (!_selfDamaged)
+        {
+            turnTimer = 5.0f;
+            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
+            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = activeCameraRef.transform.parent.GetChild(1);
+        }
+
+        isWaitingForWeaponEndProcess = false;
+    }
+
     public void KillCharacter(CharacterData _deadCharacter)
     {
         characters[_deadCharacter.owner].Remove(_deadCharacter);
@@ -75,7 +108,7 @@ public class TurnHandler : MonoBehaviour {
     }
 
     void Update () {
-		if (hasTurnStarted)
+		if (hasTurnStarted && !isWaitingForWeaponEndProcess)
         {
             turnTimer -= Time.deltaTime;
             if (turnTimer < 0.0f)
@@ -151,8 +184,8 @@ public class TurnHandler : MonoBehaviour {
             if (activeCameraRef != null)
             {
                 activeCameraRef.SetActive(false);
-                if (activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow == null)
-                    activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
+                activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
+                activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = activeCameraRef.transform.parent.GetChild(1);
             }
 
             characters[currentPlayerTurn][0].cameraRef.SetActive(true);
@@ -232,7 +265,7 @@ public class TurnHandler : MonoBehaviour {
         return GetCurrentCharacter().EquipWeapon(_weaponData, _ammo);
     }
 
-    public void CheckSelfDamage(Collider[] _explosionCollateralDamages)
+    public bool CheckSelfDamage(Collider[] _explosionCollateralDamages)
     {
         for (int i = 0; i < _explosionCollateralDamages.Length; i++)
         {
@@ -242,9 +275,11 @@ public class TurnHandler : MonoBehaviour {
                 characters[currentPlayerTurn][currentCharacterSelected].hasControl = false;
                 characters[currentPlayerTurn][currentCharacterSelected].controllerRef.enabled = false;
                 activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = null;
-                turnTimer = 0.0f;
+                return true;
             }
         }
+
+        return false;
     }
 
     public void DestroyWeapon(WeaponType _weapon)

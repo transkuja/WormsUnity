@@ -21,9 +21,14 @@ public class Weapon : MonoBehaviour {
     public int ammo;
     public bool hasAmmo;
 
+    [SerializeField]
+    protected GameObject projectile;
+
     public virtual void Shoot()
     {
-        GameManager.instance.GetComponent<TurnHandler>().turnTimer = 5.0f;
+        GameManager.instance.GetComponent<TurnHandler>().WeaponShot(
+            Instantiate(projectile, GetComponentInChildren<ProjectilePosition>().transform.position, GetComponentInChildren<ProjectilePosition>().transform.rotation, null)
+        );
         if (hasAmmo)
         {
             ammo--;

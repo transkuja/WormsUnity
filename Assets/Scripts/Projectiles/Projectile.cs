@@ -4,9 +4,4 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-    IEnumerator Start()
-    {
-        yield return new WaitForSeconds(3.0f);
-        Destroy(gameObject);
-    }
 }
