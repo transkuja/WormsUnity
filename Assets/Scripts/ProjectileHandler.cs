@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileHandler : MonoBehaviour {
+public class ProjectileHandler : MonoBehaviour
+{
 
     int damage;
     float explosionRadius;
     float explosionForce;
+    ExplosionType explosionType;
 
     IEnumerator Start()
     {
@@ -14,11 +16,12 @@ public class ProjectileHandler : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    public void Init(int _damage, float _explosionRadius, float _explosionForce)
+    public void Init(int _damage, float _explosionRadius, float _explosionForce, ExplosionType _exploType)
     {
         damage = _damage;
         explosionRadius = _explosionRadius;
         explosionForce = _explosionForce;
+        explosionType = _exploType;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,11 +30,23 @@ public class ProjectileHandler : MonoBehaviour {
 
         if (surroundings != null && surroundings.Length > 0)
         {
-            for (int i = 0; i < 6; i++)
-                GameManager.instance.craterMaker.MakeCrater(Terrain.activeTerrain.GetComponent<Collider>().ClosestPoint(collision.contacts[0].point));
             GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(surroundings);
             for (int i = 0; i < surroundings.Length; i++)
             {
+                if (surroundings[i].transform.GetComponent<Terrain>())
+                {
+                    int definitiveExplosionType = (int)explosionType;
+                    Vector3 terrainClosestPoint = surroundings[i].ClosestPoint(collision.contacts[0].point);
+
+                    if (Vector3.Distance(terrainClosestPoint, collision.contacts[0].point) > explosionRadius * 0.8f)
+                        definitiveExplosionType = (int)(ExplosionType.Small);
+                    else if (Vector3.Distance(terrainClosestPoint, collision.contacts[0].point) > explosionRadius * 0.4f)
+                        definitiveExplosionType = Mathf.Max(definitiveExplosionType - 1, (int)ExplosionType.Small);
+
+                    GameManager.instance.craterMaker.MakeCrater(Terrain.activeTerrain.GetComponent<Collider>().ClosestPoint(collision.contacts[0].point), definitiveExplosionType);
+
+                }
+
                 if (surroundings[i].transform.GetComponentInParent<CharacterData>())
                 {
                     if (Vector3.Distance(surroundings[i].transform.position, transform.position) < explosionRadius * 0.75f)
@@ -56,9 +71,8 @@ public class ProjectileHandler : MonoBehaviour {
                     }
                 }
             }
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
     }
 
     private void OnDrawGizmos()
