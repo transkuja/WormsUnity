@@ -39,11 +39,13 @@ public class CraterMaker : MonoBehaviour {
         x = Mathf.Clamp(x, craterTextures[_explosionType].width / 2, xResHeight - craterTextures[_explosionType].width / 2);
         z = Mathf.Clamp(z, craterTextures[_explosionType].height / 2, yResHeight - craterTextures[_explosionType].height / 2);
         float[,] craterArea = terrainData.GetHeights(x - craterTextures[_explosionType].width / 2, z - craterTextures[_explosionType].height / 2, craterTextures[_explosionType].width, craterTextures[_explosionType].height);
+        float depth = (_explosionType == 2) ? 5 : _explosionType + 1;
         for (int i = 0; i < craterTextures[_explosionType].height; i++)
         {
             for (int j = 0; j < craterTextures[_explosionType].width; j++)
             {
-                craterArea[i, j] = craterArea[i, j] - cratersData[_explosionType][i * craterTextures[_explosionType].width + j].a * 0.01f * (Mathf.Clamp(_explosionType * 2.5f, 1, 5));
+                craterArea[i, j] = craterArea[i, j] - cratersData[_explosionType][i * craterTextures[_explosionType].width + j].a * 0.01f * 
+                    (Mathf.Lerp(1, depth, cratersData[_explosionType][i * craterTextures[_explosionType].width + j].a));
             }
         }
         terrainData.SetHeights(x - craterTextures[_explosionType].width / 2, z - craterTextures[_explosionType].height / 2, craterArea);
