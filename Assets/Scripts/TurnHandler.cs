@@ -39,14 +39,16 @@ public class TurnHandler : MonoBehaviour {
 
     public GameObject currentProjectileInstance;
 
-    public void WeaponShot(GameObject _projectileInstance, bool _cameraShouldFollowProjectile = true)
+    public void WeaponShot(GameObject _projectileInstance, bool _cameraShouldFollowProjectile = true, bool _cameraShouldOnlyLookAt = false)
     {
         currentProjectileInstance = _projectileInstance;
         _projectileInstance.transform.SetParent(null);
 
         if (_cameraShouldFollowProjectile)
         {
-            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = currentProjectileInstance.transform;
+            if (!_cameraShouldOnlyLookAt)
+                activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = currentProjectileInstance.transform;
+
             activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = currentProjectileInstance.transform;
             activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_VerticalDamping = 3.0f;
             activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_HorizontalDamping = 3.0f;

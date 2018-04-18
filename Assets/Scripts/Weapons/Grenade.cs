@@ -7,7 +7,8 @@ public class Grenade : Weapon {
     public override void Shoot()
     {
         GameManager.instance.GetComponent<TurnHandler>().WeaponShot(
-            Instantiate(projectile, transform.position, transform.rotation, null)
+            Instantiate(projectile, transform.position, transform.rotation, null),
+            true, true
         );
 
         base.Shoot();     
