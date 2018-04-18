@@ -13,7 +13,8 @@ public class CharacterData : MonoBehaviour {
     public int owner;
 
     public bool hasControl;
-    public GameObject cameraRef;
+    public GameObject[] cameraRef = new GameObject[2];
+
     public Controller controllerRef;
 
 
@@ -54,8 +55,14 @@ public class CharacterData : MonoBehaviour {
         owner = _owner;
         hasControl = _hasControl;
         isCharacterInitialized = true;
-        cameraRef = GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>().gameObject;
-        cameraRef.SetActive(false);
+        cameraRef = new GameObject[2];
+        int i = 0;
+        foreach (Cinemachine.CinemachineVirtualCamera cam in GetComponentsInChildren<Cinemachine.CinemachineVirtualCamera>(true))
+        {
+            cameraRef[i] = cam.gameObject;
+            cameraRef[i].SetActive(false);
+            i++;
+        }
         controllerRef = GetComponentInChildren<Controller>();
         controllerRef.enabled = false;
 

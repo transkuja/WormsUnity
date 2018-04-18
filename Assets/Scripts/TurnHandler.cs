@@ -44,6 +44,8 @@ public class TurnHandler : MonoBehaviour {
         currentProjectileInstance = _projectileInstance;
         activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = currentProjectileInstance.transform;
         activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = currentProjectileInstance.transform;
+        activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_VerticalDamping = 3.0f;
+        activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_HorizontalDamping = 3.0f;
 
         isWaitingForWeaponEndProcess = true;
         turnTimer = 0.0f;
@@ -61,8 +63,7 @@ public class TurnHandler : MonoBehaviour {
         if (!_selfDamaged)
         {
             turnTimer = 5.0f;
-            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
-            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = activeCameraRef.transform.parent.GetChild(1);
+            GetCurrentCharacter().cameraRef[1].SetActive(true);
         }
 
         isWaitingForWeaponEndProcess = false;
@@ -99,8 +100,8 @@ public class TurnHandler : MonoBehaviour {
         }
 
         currentPlayerTurn = Random.Range(0, numberOfPlayers);
-        characters[currentPlayerTurn][0].cameraRef.SetActive(true);
-        activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
+        characters[currentPlayerTurn][0].cameraRef[0].SetActive(true);
+        activeCameraRef = characters[currentPlayerTurn][0].cameraRef[0];
         characters[currentPlayerTurn][0].hasControl = true;
         characters[currentPlayerTurn][0].controllerRef.enabled = true;
         GameManager.instance.uiRef.UpdateTimer(turnTimer);
@@ -184,12 +185,15 @@ public class TurnHandler : MonoBehaviour {
             if (activeCameraRef != null)
             {
                 activeCameraRef.SetActive(false);
+                GetCurrentCharacter().cameraRef[1].SetActive(false);
                 activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = activeCameraRef.transform.parent.GetChild(1);
                 activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = activeCameraRef.transform.parent.GetChild(1);
+                activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_VerticalDamping = 0.5f;
+                activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_HorizontalDamping = 0.5f;
             }
 
-            characters[currentPlayerTurn][0].cameraRef.SetActive(true);
-            activeCameraRef = characters[currentPlayerTurn][0].cameraRef;
+            characters[currentPlayerTurn][0].cameraRef[0].SetActive(true);
+            activeCameraRef = characters[currentPlayerTurn][0].cameraRef[0];
 
             yield return new WaitForSeconds(cameraLerpTimer);
             turnTimer = resetTurnTimer;
@@ -220,8 +224,8 @@ public class TurnHandler : MonoBehaviour {
         activeCameraRef.GetComponentInParent<CharacterData>().controllerRef.enabled = false;
         activeCameraRef.SetActive(false);
 
-        characters[currentPlayerTurn][currentCharacterSelected].cameraRef.SetActive(true);
-        activeCameraRef = characters[currentPlayerTurn][currentCharacterSelected].cameraRef;
+        characters[currentPlayerTurn][currentCharacterSelected].cameraRef[0].SetActive(true);
+        activeCameraRef = characters[currentPlayerTurn][currentCharacterSelected].cameraRef[0];
         characters[currentPlayerTurn][currentCharacterSelected].hasControl = true;
         characters[currentPlayerTurn][currentCharacterSelected].controllerRef.enabled = true;
 
