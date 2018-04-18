@@ -778,6 +778,26 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4978479623884708, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.00007773243
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978479623884708, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.0000164713
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978479623884708, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.20790252
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978479623884708, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.9781496
+      objectReference: {fileID: 0}
+    - target: {fileID: 1391205379527198, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
   m_IsPrefabParent: 0
@@ -1150,6 +1170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 795683899}
   - component: {fileID: 795683900}
+  - component: {fileID: 795683901}
   m_Layer: 0
   m_Name: CrateSpawner
   m_TagString: Untagged
@@ -1164,7 +1185,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 795683898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8, z: 12.96}
+  m_LocalPosition: {x: 49.2, y: 9.8, z: 74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 793033884}
@@ -1181,7 +1202,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b2c9cd5d0028e4fa1d1c7628befa48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crate: {fileID: 1328092682919086, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}
+  crates:
+  - {fileID: 1328092682919086, guid: a71aa4571e1fc774f950a32e9cb9804b, type: 2}
+  - {fileID: 1328092682919086, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}
+  maxSpawnPerTurn: 5
+--- !u!65 &795683901
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 795683898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 56.98, y: 1, z: 48.6}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &817273086
 GameObject:
   m_ObjectHideFlags: 0
