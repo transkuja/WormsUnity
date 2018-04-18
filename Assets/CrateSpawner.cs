@@ -34,7 +34,7 @@ public class CrateSpawner : MonoBehaviour {
 
     void SpawnProcess()
     {
-        int crateType = Random.Range(0, 2);
+        int crateType = (Random.Range(0, 4) == 0) ? 0 : 1;
         GameObject newCrate = Instantiate(crates[crateType], RandomizeSpawnPosition(), Quaternion.identity, transform);
         if (newCrate.GetComponent<WeaponCrate>())
         {

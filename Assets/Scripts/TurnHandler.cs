@@ -114,7 +114,7 @@ public class TurnHandler : MonoBehaviour {
             for (int j = 0; j < menuData.nbWorms; j++)
             {
                 GameObject newCharacter = Instantiate(character, startingPositions.GetChild(i * 4 + j).position, startingPositions.GetChild(i * 4 + j).rotation, null);
-                newCharacter.GetComponent<CharacterData>().Init(20, i, false);
+                newCharacter.GetComponent<CharacterData>().Init(menuData.health, i, false);
                 characters[i].Add(newCharacter.GetComponent<CharacterData>());
             }
         }
@@ -184,8 +184,12 @@ public class TurnHandler : MonoBehaviour {
         yield return new WaitUntil(() => CheckAllWormsRecovered());
 
         currentCharacterSelected = 0;
-        currentPlayerTurn++;
-        currentPlayerTurn %= menuData.nbPlayers;
+        int nbIterations = 0;
+        while (characters[currentPlayerTurn].Count == 0 && nbIterations < characters.Length + 1)
+        {
+            currentPlayerTurn++;
+            currentPlayerTurn %= characters.Length;
+        }
 
         if (activeCameraRef != null)
         {
@@ -234,11 +238,11 @@ public class TurnHandler : MonoBehaviour {
 
     public void SwitchCharacter()
     {
-        if (!hasTurnStarted)
+        if (!hasTurnStarted || characters[currentPlayerTurn].Count == 1)
             return;
 
         currentCharacterSelected++;
-        currentCharacterSelected %= startingPositions.childCount/ menuData.nbPlayers;
+        currentCharacterSelected %= characters[currentPlayerTurn].Count;
 
         activeCameraRef.GetComponentInParent<CharacterData>().hasControl = false;
         activeCameraRef.GetComponentInParent<CharacterData>().controllerRef.enabled = false;

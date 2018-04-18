@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour {
     public int nbPlayers = 2;
     public int nbWorms = 1;
     public int turnTimer = 60;
+    public int health = 100;
 
     [SerializeField]
     Text nbPlayersTxt;
@@ -15,6 +16,8 @@ public class Menu : MonoBehaviour {
     Text nbWormsTxt;
     [SerializeField]
     Text timerTxt;
+    [SerializeField]
+    Text healthTxt;
 
     public void UpdateNbPlayers(int _toAdd)
     {
@@ -32,5 +35,11 @@ public class Menu : MonoBehaviour {
     {
         turnTimer = Mathf.Clamp(turnTimer + _toAdd, 5, 180);
         timerTxt.text = turnTimer.ToString();
+    }
+
+    public void UpdateHealth(int _toAdd)
+    {
+        health = Mathf.Clamp(health + _toAdd, 5, 200);
+        healthTxt.text = health.ToString();
     }
 }
