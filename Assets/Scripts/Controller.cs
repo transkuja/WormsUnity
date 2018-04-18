@@ -182,7 +182,6 @@ public class Controller : MonoBehaviour {
             yield return new WaitForSeconds(2.0f);
             if (Physics.Raycast(transform.position, Vector3.down, 1.5f))
             {
-                // TODO: add condition here
                 Rb.constraints = RigidbodyConstraints.FreezeRotation;
                 transform.rotation = Quaternion.identity;
             }

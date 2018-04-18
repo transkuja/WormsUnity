@@ -59,6 +59,7 @@ public class TurnHandler : MonoBehaviour {
         isWaitingForWeaponEndProcess = true;
         turnTimer = 0.0f;
         GameManager.instance.uiRef.UpdateTimer(turnTimer);
+        cameraMinimap.gameObject.SetActive(false);
     }
 
     public void WeaponEndProcess(bool _selfDamaged)
@@ -76,6 +77,7 @@ public class TurnHandler : MonoBehaviour {
         }
 
         isWaitingForWeaponEndProcess = false;
+        cameraMinimap.gameObject.SetActive(true);
     }
 
     public void KillCharacter(CharacterData _deadCharacter)
@@ -170,8 +172,7 @@ public class TurnHandler : MonoBehaviour {
 
     IEnumerator NextTurn()
     {
-        while (!CheckAllWormsRecovered())
-            yield return new WaitForSeconds(0.5f);
+        yield return new WaitUntil(() => CheckAllWormsRecovered());
 
         currentCharacterSelected = 0;
         currentPlayerTurn++;
