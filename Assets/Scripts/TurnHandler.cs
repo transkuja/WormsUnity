@@ -39,13 +39,18 @@ public class TurnHandler : MonoBehaviour {
 
     public GameObject currentProjectileInstance;
 
-    public void WeaponShot(GameObject _projectileInstance)
+    public void WeaponShot(GameObject _projectileInstance, bool _cameraShouldFollowProjectile = true)
     {
         currentProjectileInstance = _projectileInstance;
-        activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = currentProjectileInstance.transform;
-        activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = currentProjectileInstance.transform;
-        activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_VerticalDamping = 3.0f;
-        activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_HorizontalDamping = 3.0f;
+        _projectileInstance.transform.SetParent(null);
+
+        if (_cameraShouldFollowProjectile)
+        {
+            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_Follow = currentProjectileInstance.transform;
+            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().m_LookAt = currentProjectileInstance.transform;
+            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_VerticalDamping = 3.0f;
+            activeCameraRef.GetComponent<Cinemachine.CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineComposer>().m_HorizontalDamping = 3.0f;
+        }
 
         isWaitingForWeaponEndProcess = true;
         turnTimer = 0.0f;
