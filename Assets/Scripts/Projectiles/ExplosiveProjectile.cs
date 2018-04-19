@@ -73,17 +73,9 @@ public class ExplosiveProjectile : Projectile {
                     surroundings[i].transform.GetComponentInParent<CharacterData>().Health -= (int)(damage * (Mathf.Clamp(((explosionRadius - Vector3.Distance(surroundings[i].transform.position, transform.position)) / explosionRadius), 0, 1)));
                 }
 
-                if (surroundings[i].tag == "Destructible")
+                if (surroundings[i].GetComponent<Crate>())
                 {
-                    if (Vector3.Distance(surroundings[i].transform.position, transform.position) < explosionRadius / 2.0f)
-                    {
-                        Destroy(surroundings[i].gameObject, 0.1f);
-                    }
-                    else
-                    {
-                        surroundings[i].GetComponent<Rigidbody>().useGravity = true;
-                        surroundings[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 5.0f);
-                    }
+                    Destroy(surroundings[i].gameObject, 0.1f);
                 }
             }
             AfterExplodeProcess();
