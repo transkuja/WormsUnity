@@ -104,6 +104,7 @@ public class TurnHandler : MonoBehaviour {
     }
 
     public void StartGame() {
+        Time.timeScale = 1.0f;
         resetTurnTimer = menuData.turnTimer;
         turnTimer = resetTurnTimer;
 

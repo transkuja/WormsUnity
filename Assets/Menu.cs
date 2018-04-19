@@ -19,6 +19,11 @@ public class Menu : MonoBehaviour {
     [SerializeField]
     Text healthTxt;
 
+    private void Awake()
+    {
+        Time.timeScale = 0.0f;    
+    }
+
     public void UpdateNbPlayers(int _toAdd)
     {
         nbPlayers = Mathf.Clamp(nbPlayers + _toAdd, 2, 4);
