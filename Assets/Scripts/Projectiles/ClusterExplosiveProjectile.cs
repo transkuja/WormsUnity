@@ -11,7 +11,7 @@ public class ClusterExplosiveProjectile : ExplosiveProjectile {
 
     GameObject[] subProjectiles;
 
-    protected override void Explode(Vector3 _explosionCenter)
+    public override void Explode(Vector3 _explosionCenter)
     {
         GameObject fragmentsParent = new GameObject("fragmentContainer", typeof(FragmentsParent));
 

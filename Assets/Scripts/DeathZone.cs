@@ -10,5 +10,10 @@ public class DeathZone : MonoBehaviour {
         {
             GameManager.instance.GetComponent<TurnHandler>().KillCharacter(other.transform.GetComponentInParent<CharacterData>());
         }
+
+        if (other.transform.GetComponentInParent<ExplosiveProjectile>())
+        {
+            other.transform.GetComponentInParent<ExplosiveProjectile>().Explode(other.transform.position);
+        }
     }
 }

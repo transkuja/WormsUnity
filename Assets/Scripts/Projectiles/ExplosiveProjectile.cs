@@ -14,6 +14,7 @@ public class ExplosiveProjectile : Projectile {
 
     public bool explodesOnCollisionEnter;
     public bool delayedExplosion;
+    public bool explodesOnCollisionWithPlayer;
     public float explosionDelay;
 
     public bool drawGizmos;
@@ -27,7 +28,7 @@ public class ExplosiveProjectile : Projectile {
         }
         else
         {
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(10.0f);
             Destroy(gameObject);
         }
 
@@ -37,6 +38,9 @@ public class ExplosiveProjectile : Projectile {
     {
         if (collision.transform.GetComponent<Projectile>())
             return;
+
+        if (explodesOnCollisionWithPlayer && collision.transform.GetComponent<Controller>())
+            Explode(collision.contacts[0].point);
 
         if (explodesOnCollisionEnter)
             Explode(collision.contacts[0].point);
@@ -50,7 +54,7 @@ public class ExplosiveProjectile : Projectile {
             GameManager.instance.GetComponent<TurnHandler>().WeaponEndProcess(GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(_surroundings));
     }
 
-    protected virtual void Explode(Vector3 _explosionCenter)
+    public virtual void Explode(Vector3 _explosionCenter)
     {
         Instantiate(explosionParticles, transform.GetComponentInChildren<Renderer>().transform.position, Quaternion.identity, null);
 
