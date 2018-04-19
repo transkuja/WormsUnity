@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public enum WeaponType { Bazooka, Finger, Dynamite, HolyGrenade, Grenade, ClusterGrenade, Size, None  }
+public enum WeaponType { Bazooka, Finger, Dynamite, HolyGrenade, Grenade, ClusterGrenade, AirStrike, Size, None  }
 
 [System.Serializable]
 public class Weapon : MonoBehaviour {

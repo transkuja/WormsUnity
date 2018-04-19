@@ -31,6 +31,9 @@ public class WeaponSlot : MonoBehaviour {
             case WeaponType.ClusterGrenade:
                 newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().clusterGrenadePrefab, transform);
                 break;
+            case WeaponType.AirStrike:
+                newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().airStrikePrefab, transform);
+                break;
             default:
                 return false;
         }

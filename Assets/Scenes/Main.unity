@@ -469,6 +469,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114462552082094152, guid: c3541726266dfb845a08121fbc7a15a2,
+        type: 2}
+      propertyPath: weaponType
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}
   m_IsPrefabParent: 0
@@ -2004,6 +2009,38 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4174831589928650, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.00007533742
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174831589928650, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.000015975884
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978479623884708, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.00007533742
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978479623884708, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.000015975884
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174831589928650, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.20807149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174831589928650, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.97811365
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978479623884708, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.20807149
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978479623884708, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: -0.97811365
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50efaed5cbbd0be43aef4c2d474b1628, type: 2}
   m_IsPrefabParent: 0
@@ -3437,7 +3474,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.8392157, g: 1, b: 0.99999994, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -4773,6 +4810,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114462552082094152, guid: c3541726266dfb845a08121fbc7a15a2,
+        type: 2}
+      propertyPath: weaponType
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}
   m_IsPrefabParent: 0
@@ -5830,6 +5872,8 @@ MonoBehaviour:
   dynamitePrefab: {fileID: 1089949544715640, guid: eb3200cd4b2f49e4f9534ba1e45ad873,
     type: 2}
   clusterGrenadePrefab: {fileID: 1152329945324008, guid: 554c39d5330a7e447a0c703e43834ea1,
+    type: 2}
+  airStrikePrefab: {fileID: 1723125320884062, guid: d113eb843738b2d4092bcb61fbd3255c,
     type: 2}
 --- !u!1001 &1408069625
 Prefab:
@@ -7876,7 +7920,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 50
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -7900,8 +7944,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1779953456}
-  m_LocalRotation: {x: -0.20790267, y: -0.00007744973, z: 0.000016411224, w: -0.97814953}
-  m_LocalPosition: {x: 61.24, y: 19.875, z: 35.53}
+  m_LocalRotation: {x: 0.4611292, y: 0, z: 0, w: 0.88733304}
+  m_LocalPosition: {x: 34.73, y: 62.8, z: 13.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

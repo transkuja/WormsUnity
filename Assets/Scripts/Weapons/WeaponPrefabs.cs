@@ -9,4 +9,5 @@ public class WeaponPrefabs : MonoBehaviour {
     public GameObject fingerPrefab;
     public GameObject dynamitePrefab;
     public GameObject clusterGrenadePrefab;
+    public GameObject airStrikePrefab;
 }

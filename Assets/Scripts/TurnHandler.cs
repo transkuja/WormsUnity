@@ -302,6 +302,9 @@ public class TurnHandler : MonoBehaviour {
     {
         for (int i = 0; i < _explosionCollateralDamages.Length; i++)
         {
+            if (_explosionCollateralDamages[i] == null || _explosionCollateralDamages[i].GetComponent<Projectile>())
+                continue;
+
             if (_explosionCollateralDamages[i].GetComponentInParent<CharacterData>() 
                 && _explosionCollateralDamages[i].GetComponentInParent<CharacterData>() == characters[currentPlayerTurn][currentCharacterSelected])
             {

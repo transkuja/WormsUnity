@@ -39,13 +39,18 @@ public class ExplosiveProjectile : Projectile {
             Explode(collision.contacts[0].point);
     }
 
+    protected virtual void CallWeaponEndProcess(Collider[] _surroundings)
+    {
+        GameManager.instance.GetComponent<TurnHandler>().WeaponEndProcess(GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(_surroundings));
+    }
+
     protected virtual void Explode(Vector3 _explosionCenter)
     {
         Collider[] surroundings = Physics.OverlapSphere(transform.position, explosionRadius);
 
         if (surroundings != null && surroundings.Length > 0)
         {
-            GameManager.instance.GetComponent<TurnHandler>().WeaponEndProcess(GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(surroundings));
+            CallWeaponEndProcess(surroundings);
             for (int i = 0; i < surroundings.Length; i++)
             {
                 if (surroundings[i].transform.GetComponent<Terrain>())

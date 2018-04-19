@@ -28,4 +28,12 @@ public class MissileProjectile : ExplosiveProjectile {
 	void Update () {
         transform.LookAt(transform.position + Rb.velocity);
 	}
+
+    protected override void CallWeaponEndProcess(Collider[] _surroundings)
+    {
+        if (GetComponentInParent<AirStrikeProjectile>())
+            GetComponentInParent<AirStrikeProjectile>().everythingImpacted.AddRange(_surroundings);
+        else
+            base.CallWeaponEndProcess(_surroundings);
+    }
 }

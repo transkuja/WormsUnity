@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 136815018327283246}
   - component: {fileID: 114438616010680162}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: Missile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46d246d6be7c934c858361f951100a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMoveRightAfterUse: 0
   damage: 25
   explosionRadius: 5
   explosionForce: 500

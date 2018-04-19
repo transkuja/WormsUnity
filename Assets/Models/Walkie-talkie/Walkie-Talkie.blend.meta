@@ -1,27 +1,15 @@
 fileFormatVersion: 2
-guid: b777294fa7f873547b39e39dfc52bdc1
-timeCreated: 1524121214
+guid: 6dcc5055381526045a924007cf0785a6
+timeCreated: 1524121438
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Inst3D_RefRep
-    100004: Inst3D_RefRep_249
-    100006: Inst3D_RefRep_249_Ref
     400000: //RootNode
-    400002: Inst3D_RefRep
-    400004: Inst3D_RefRep_249
-    400006: Inst3D_RefRep_249_Ref
-    2300000: Inst3D_RefRep
-    2300002: Inst3D_RefRep_249
-    2300004: Inst3D_RefRep_249_Ref
-    3300000: Inst3D_RefRep
-    3300002: Inst3D_RefRep_249
-    3300004: Inst3D_RefRep_249_Ref
-    4300000: Inst3D_RefRep
-    4300002: Inst3D_RefRep_249
-    4300004: Inst3D_RefRep_249_Ref
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Inst3D_RefRep_235_Ref
     7400000: Default Take
     9500000: //RootNode
   materials:
