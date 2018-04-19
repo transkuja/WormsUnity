@@ -290,7 +290,7 @@ MonoBehaviour:
   explodesOnCollisionEnter: 1
   delayedExplosion: 1
   explodesOnCollisionWithPlayer: 0
-  explosionDelay: 10
+  explosionDelay: 20
   drawGizmos: 0
 --- !u!114 &114686686104501062
 MonoBehaviour:

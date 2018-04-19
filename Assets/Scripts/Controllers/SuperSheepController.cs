@@ -34,9 +34,9 @@ public class SuperSheepController : MonoBehaviour {
     {
         Rb.velocity = transform.forward * sheepSpeed;
 
-            transform.Rotate(Input.GetAxis("Vertical") * transform.right, 0.25f);
+            transform.Rotate(Input.GetAxis("Vertical") * transform.right, 0.5f);
         if (Input.GetAxis("Vertical") < 0.01f && Input.GetAxis("Vertical") > -0.01f)
-            transform.Rotate(Vector3.up * Input.GetAxis("Horizontal"), 0.5f, Space.World);
+            transform.Rotate(Vector3.up * Input.GetAxis("Horizontal")*2.0f, 2.0f, Space.World);
 
     }
 }
