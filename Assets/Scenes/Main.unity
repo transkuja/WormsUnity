@@ -5775,7 +5775,7 @@ MonoBehaviour:
   - Thomas
   - Vincent
   - Alexandre
-  - Yurmom
+  - Yurmaum
   - Coquinou
   - Goujat
   - Saperlipopette
@@ -5784,6 +5784,13 @@ MonoBehaviour:
   - Bernard
   - Marcelle
   - "Paul Def\xE8s"
+  - John
+  - Dimitri
+  - Xavier
+  - Flo
+  - JC
+  - Fabrice
+  - Teddy
   playerColors:
   - {r: 0.875, g: 0.09007351, b: 0.09007351, a: 1}
   - {r: 0.20588237, g: 0.5399594, b: 1, a: 1}
