@@ -24,6 +24,7 @@ public class SuperSheepController : MonoBehaviour {
     {
         rb = GetComponentInChildren<Rigidbody>();
         rb.useGravity = false;
+
         Rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         Rb.AddForce((transform.forward + Vector3.up) * 2.0f, ForceMode.Impulse);
         Rb.AddForce(transform.forward * sheepSpeed, ForceMode.Impulse);
@@ -31,6 +32,11 @@ public class SuperSheepController : MonoBehaviour {
 
     private void Update()
     {
-        Rb.AddForce(transform.forward * sheepSpeed);
+        Rb.velocity = transform.forward * sheepSpeed;
+
+            transform.Rotate(Input.GetAxis("Vertical") * transform.right, 0.25f);
+        if (Input.GetAxis("Vertical") < 0.01f && Input.GetAxis("Vertical") > -0.01f)
+            transform.Rotate(Vector3.up * Input.GetAxis("Horizontal"), 0.5f, Space.World);
+
     }
 }
