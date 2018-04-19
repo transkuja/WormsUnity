@@ -118,6 +118,18 @@ public class TurnHandler : MonoBehaviour {
                 newCharacter.GetComponent<CharacterData>().Init(menuData.health, i, false);
                 characters[i].Add(newCharacter.GetComponent<CharacterData>());
             }
+            for (int j = menuData.nbWorms; j < 4; j++)
+            {
+                foreach (Crate c in startingPositions.GetChild(i * 4 + j).GetComponentsInChildren<Crate>())
+                    Destroy(c.gameObject);
+            }
+        }
+
+        for (int i = menuData.nbPlayers; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+                foreach (Crate c in startingPositions.GetChild(i * 4 + j).GetComponentsInChildren<Crate>())
+                    Destroy(c.gameObject);
         }
 
         currentPlayerTurn = Random.Range(0, menuData.nbPlayers);
