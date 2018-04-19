@@ -356,6 +356,52 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1001 &64565205
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4434352633140858, guid: e63db701bf94e854683b3f659f429240, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 59.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: e63db701bf94e854683b3f659f429240, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 16.345
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: e63db701bf94e854683b3f659f429240, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 41.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: e63db701bf94e854683b3f659f429240, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: e63db701bf94e854683b3f659f429240, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: e63db701bf94e854683b3f659f429240, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: e63db701bf94e854683b3f659f429240, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: e63db701bf94e854683b3f659f429240, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152329945324008, guid: e63db701bf94e854683b3f659f429240, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e63db701bf94e854683b3f659f429240, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &70038401
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +518,7 @@ Prefab:
     - target: {fileID: 114462552082094152, guid: c3541726266dfb845a08121fbc7a15a2,
         type: 2}
       propertyPath: weaponType
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}
@@ -3167,7 +3213,7 @@ Prefab:
     - target: {fileID: 114462552082094152, guid: c3541726266dfb845a08121fbc7a15a2,
         type: 2}
       propertyPath: weaponType
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}
@@ -4813,7 +4859,7 @@ Prefab:
     - target: {fileID: 114462552082094152, guid: c3541726266dfb845a08121fbc7a15a2,
         type: 2}
       propertyPath: weaponType
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}
@@ -5875,6 +5921,12 @@ MonoBehaviour:
     type: 2}
   airStrikePrefab: {fileID: 1723125320884062, guid: d113eb843738b2d4092bcb61fbd3255c,
     type: 2}
+  bananaPrefab: {fileID: 1152329945324008, guid: e63db701bf94e854683b3f659f429240,
+    type: 2}
+  sheepPrefab: {fileID: 0}
+  superSheepPrefab: {fileID: 0}
+  uziPrefab: {fileID: 0}
+  shotgunPrefab: {fileID: 0}
 --- !u!1001 &1408069625
 Prefab:
   m_ObjectHideFlags: 0
@@ -6201,6 +6253,52 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd4c2f0d6bb54c740a1fd512237a8a75, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1460366066
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4434352633140858, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 59.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 16.345
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 41.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4434352633140858, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1152329945324008, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ad1c9768e3294cf45ab07cddfb6415d0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1467998412
 Prefab:
@@ -8117,7 +8215,7 @@ Prefab:
     - target: {fileID: 114462552082094152, guid: c3541726266dfb845a08121fbc7a15a2,
         type: 2}
       propertyPath: weaponType
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}

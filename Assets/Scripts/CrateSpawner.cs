@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CrateSpawner : MonoBehaviour {
-    int[] ammoDefaultValues = { 2, -1, 2, 2, -1, -1, -1 };
+//    public enum WeaponType { Bazooka, Finger, Dynamite, HolyGrenade, Grenade, ClusterGrenade, AirStrike, Banana, Sheep, SuperSheep, Uzi, Shotgun, Size, None }
+
+    int[] ammoDefaultValues = { 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2, 2 };
     [SerializeField]
     GameObject[] crates;
     Collider spawnZone;
