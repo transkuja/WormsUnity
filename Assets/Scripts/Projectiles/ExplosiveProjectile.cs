@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplosiveProjectile : Projectile {
+    [SerializeField]
+    GameObject explosionParticles;
+
     public int damage;
     public float explosionRadius;
     public float explosionForce;
@@ -41,11 +44,16 @@ public class ExplosiveProjectile : Projectile {
 
     protected virtual void CallWeaponEndProcess(Collider[] _surroundings)
     {
-        GameManager.instance.GetComponent<TurnHandler>().WeaponEndProcess(GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(_surroundings));
+        if (GetComponentInParent<FragmentsParent>())
+            GetComponentInParent<FragmentsParent>().everythingImpacted.AddRange(_surroundings);
+        else
+            GameManager.instance.GetComponent<TurnHandler>().WeaponEndProcess(GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(_surroundings));
     }
 
     protected virtual void Explode(Vector3 _explosionCenter)
     {
+        Instantiate(explosionParticles, transform.GetComponentInChildren<Renderer>().transform.position, Quaternion.identity, null);
+
         Collider[] surroundings = Physics.OverlapSphere(transform.position, explosionRadius);
 
         if (surroundings != null && surroundings.Length > 0)

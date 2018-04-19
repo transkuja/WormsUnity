@@ -223,6 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc0faa85d072294c82f3a34c06da015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMoveRightAfterUse: 0
+  explosionParticles: {fileID: 1211053435522892, guid: fae99bc636d098f469ba2938562718a3,
+    type: 2}
   damage: 20
   explosionRadius: 5
   explosionForce: 500

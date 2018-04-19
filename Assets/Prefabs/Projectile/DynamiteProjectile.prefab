@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canMoveRightAfterUse: 1
+  explosionParticles: {fileID: 1211053435522892, guid: fae99bc636d098f469ba2938562718a3,
+    type: 2}
   damage: 30
   explosionRadius: 7
   explosionForce: 600

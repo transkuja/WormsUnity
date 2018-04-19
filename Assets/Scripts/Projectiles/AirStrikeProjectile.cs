@@ -16,6 +16,7 @@ public class AirStrikeProjectile : Projectile {
 
     private IEnumerator Start()
     {
+        everythingImpacted = new List<Collider>();
         rb = GetComponentInChildren<Rigidbody>();
         yield return new WaitForSeconds(30.0f);
         Destroy(gameObject);
