@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour {
     public int nbWorms = 1;
     public int turnTimer = 60;
     public int health = 100;
+    public int maxSpawnPerTurn = 5;
 
     [SerializeField]
     Text nbPlayersTxt;
@@ -18,6 +19,8 @@ public class Menu : MonoBehaviour {
     Text timerTxt;
     [SerializeField]
     Text healthTxt;
+    [SerializeField]
+    Text spawnTxt;
 
     private void Awake()
     {
@@ -46,5 +49,11 @@ public class Menu : MonoBehaviour {
     {
         health = Mathf.Clamp(health + _toAdd, 5, 200);
         healthTxt.text = health.ToString();
+    }
+
+    public void UpdateMaxSpawnPerTurn(int _toAdd)
+    {
+        maxSpawnPerTurn = Mathf.Clamp(maxSpawnPerTurn + _toAdd, 1, 9);
+        spawnTxt.text = maxSpawnPerTurn.ToString();
     }
 }

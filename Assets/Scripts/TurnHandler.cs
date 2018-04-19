@@ -140,6 +140,11 @@ public class TurnHandler : MonoBehaviour {
         GameManager.instance.uiRef.UpdateTimer(turnTimer);
         hasTurnStarted = true;
         cameraMinimap.ChangeTarget(GetCurrentCharacter().GetComponentInChildren<Rigidbody>().transform);
+
+        foreach (CrateSpawner spawner in crateSpawners.GetComponentsInChildren<CrateSpawner>())
+        {
+            spawner.maxSpawnPerTurn = menuData.maxSpawnPerTurn;
+        }
     }
 
     void Update () {
@@ -159,7 +164,9 @@ public class TurnHandler : MonoBehaviour {
     void CratesSpawn()
     {
         foreach (CrateSpawner spawner in crateSpawners.GetComponentsInChildren<CrateSpawner>())
+        {
             spawner.Spawn();
+        }
     }
 
     bool CheckAllWormsRecovered()
