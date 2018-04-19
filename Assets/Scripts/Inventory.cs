@@ -64,6 +64,11 @@ public class Inventory : MonoBehaviour {
             case WeaponType.HolyGrenade:
             case WeaponType.ClusterGrenade:
             case WeaponType.AirStrike:
+            case WeaponType.Banana:
+            case WeaponType.Sheep:
+            case WeaponType.SuperSheep:
+            case WeaponType.Shotgun:
+            case WeaponType.Uzi:
                 return holyGrenadeSprite;
             case WeaponType.Bazooka:
                 return bazookaSprite;

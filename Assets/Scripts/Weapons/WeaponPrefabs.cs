@@ -10,4 +10,10 @@ public class WeaponPrefabs : MonoBehaviour {
     public GameObject dynamitePrefab;
     public GameObject clusterGrenadePrefab;
     public GameObject airStrikePrefab;
+    public GameObject bananaPrefab;
+    public GameObject sheepPrefab;
+    public GameObject superSheepPrefab;
+    public GameObject uziPrefab;
+    public GameObject shotgunPrefab;
+
 }

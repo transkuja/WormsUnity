@@ -34,6 +34,21 @@ public class WeaponSlot : MonoBehaviour {
             case WeaponType.AirStrike:
                 newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().airStrikePrefab, transform);
                 break;
+            case WeaponType.Banana:
+                newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().bananaPrefab, transform);
+                break;
+            case WeaponType.Sheep:
+                newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().sheepPrefab, transform);
+                break;
+            case WeaponType.SuperSheep:
+                newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().superSheepPrefab, transform);
+                break;
+            case WeaponType.Uzi:
+                newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().uziPrefab, transform);
+                break;
+            case WeaponType.Shotgun:
+                newWeapon = Instantiate(GameManager.instance.GetComponent<WeaponPrefabs>().shotgunPrefab, transform);
+                break;
             default:
                 return false;
         }
