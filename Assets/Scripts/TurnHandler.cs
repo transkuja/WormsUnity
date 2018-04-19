@@ -184,11 +184,13 @@ public class TurnHandler : MonoBehaviour {
         yield return new WaitUntil(() => CheckAllWormsRecovered());
 
         currentCharacterSelected = 0;
-        int nbIterations = 0;
-        while (characters[currentPlayerTurn].Count == 0 && nbIterations < characters.Length + 1)
+        bool turnChanged = false;
+        while (!turnChanged)
         {
             currentPlayerTurn++;
             currentPlayerTurn %= characters.Length;
+            if (characters[currentPlayerTurn].Count != 0)
+                turnChanged = true;
         }
 
         if (activeCameraRef != null)
