@@ -206,6 +206,9 @@ public class TurnHandler : MonoBehaviour {
     {
         yield return new WaitUntil(() => CheckAllWormsRecovered());
 
+        if (AudioManager.Instance != null && AudioManager.Instance.nextTurnFx != null)
+             AudioManager.Instance.PlayOneShot(AudioManager.Instance.nextTurnFx);
+
         currentCharacterSelected = 0;
         bool turnChanged = false;
         while (!turnChanged)

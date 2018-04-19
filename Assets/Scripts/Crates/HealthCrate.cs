@@ -11,6 +11,8 @@ public class HealthCrate : Crate {
     {
         if (collision.transform.GetComponentInParent<CharacterData>())
         {
+            if (AudioManager.Instance != null && AudioManager.Instance.healCrateFx != null)
+                AudioManager.Instance.PlayOneShot(AudioManager.Instance.healCrateFx);
             collision.transform.GetComponentInParent<CharacterData>().Health += healthValue;           
             Destroy(gameObject);
         }

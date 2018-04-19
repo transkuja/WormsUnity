@@ -208,8 +208,10 @@ MonoBehaviour:
   explosionType: 1
   explodesOnCollisionEnter: 0
   delayedExplosion: 1
+  explodesOnCollisionWithPlayer: 0
   explosionDelay: 4
   drawGizmos: 0
+  type: 7
   subProjectile: {fileID: 1152329945324008, guid: 125260066503b3d4eb648d656443d946,
     type: 2}
   subProjectileCount: 10

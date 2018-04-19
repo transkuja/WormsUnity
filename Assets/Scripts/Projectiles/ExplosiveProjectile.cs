@@ -48,6 +48,12 @@ public class ExplosiveProjectile : Projectile {
         if (collision.transform.GetComponent<Projectile>())
             return;
 
+        if (type == WeaponType.Banana)
+        {
+            if (AudioManager.Instance != null && AudioManager.Instance.boingFx != null)
+                AudioManager.Instance.PlayOneShot(AudioManager.Instance.boingFx);
+        }
+
         if (explodesOnCollisionWithPlayer && collision.transform.GetComponent<Controller>())
             Explode(collision.contacts[0].point);
 

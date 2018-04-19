@@ -30,6 +30,9 @@ public class SheepController : MonoBehaviour {
         Rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         Rb.AddForce((transform.forward + Vector3.up) * 2.0f, ForceMode.Impulse);
         Rb.AddForce(transform.forward * sheepSpeed, ForceMode.Impulse);
+
+        if (AudioManager.Instance != null && AudioManager.Instance.sheepFX != null)
+            AudioManager.Instance.PlayOneShot(AudioManager.Instance.sheepFX);
     }
 
     void Update () {
@@ -49,6 +52,9 @@ public class SheepController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (AudioManager.Instance != null && AudioManager.Instance.sheepFX != null)
+            AudioManager.Instance.PlayOneShot(AudioManager.Instance.sheepFX);
+
         if (collision.transform.GetComponent<Terrain>())
         {
             Rb.AddForce(transform.up * sheepSpeed * 0.5f, ForceMode.Impulse);

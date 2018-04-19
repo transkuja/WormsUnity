@@ -427,6 +427,7 @@ MonoBehaviour:
   superSheepFlightFx: {fileID: 8300000, guid: dcd0df342f6ea7f45b53ddc888d66c81, type: 3}
   planeFx: {fileID: 8300000, guid: 049fda1af437c834191455a600eea507, type: 3}
   airStrikeFx: {fileID: 8300000, guid: f19a34c2de33d1c42a8720c716294aac, type: 3}
+  nextTurnFx: {fileID: 8300000, guid: 4c9f7a66104b9a24fb64846dd46dde8f, type: 3}
   victorySound: {fileID: 8300000, guid: 73c58cdf5c6a28442a70af3fd0fd7fe1, type: 3}
   volumeMusic: 0.05
   volumeFXs: 0.1

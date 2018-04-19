@@ -224,8 +224,10 @@ MonoBehaviour:
   explosionType: 1
   explodesOnCollisionEnter: 0
   delayedExplosion: 1
+  explodesOnCollisionWithPlayer: 0
   explosionDelay: 4
   drawGizmos: 0
+  type: 7
 --- !u!136 &136569469491672268
 CapsuleCollider:
   m_ObjectHideFlags: 1

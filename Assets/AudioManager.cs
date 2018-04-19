@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip planeFx;
     public AudioClip airStrikeFx;
+    public AudioClip nextTurnFx;
 
     public AudioClip victorySound;   
 
@@ -122,7 +123,7 @@ public class AudioManager : MonoBehaviour
         sourceFX[sourceFXIndex].PlayOneShot(clip, volumeFXs * volumeMultiplier);
     }
 
-    public void Play(AudioClip clip, float volumeMultiplier = 1.0f)
+    public AudioSource Play(AudioClip clip, float volumeMultiplier = 1.0f)
     {
         int sourceFXIndex = 0;
         if (sourceFX[sourceFXIndex].isPlaying)
@@ -134,6 +135,7 @@ public class AudioManager : MonoBehaviour
             sourceFX[sourceFXIndex].clip = clip;
         sourceFX[sourceFXIndex].volume = volumeFXs * volumeMultiplier;
         sourceFX[sourceFXIndex].Play();
+        return sourceFX[sourceFXIndex];
     }
 
 

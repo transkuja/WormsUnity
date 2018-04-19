@@ -28,7 +28,8 @@ public class WeaponCrate : Crate {
                 {
                     collision.transform.GetComponentInParent<CharacterData>().inventory.Add(weaponType, ammo);
                 }
-
+                if (AudioManager.Instance != null && AudioManager.Instance.crateFx != null)
+                    AudioManager.Instance.PlayOneShot(AudioManager.Instance.crateFx);
                 Destroy(gameObject);
             }
         }
