@@ -260,6 +260,8 @@ public class TurnHandler : MonoBehaviour {
     void EndGameProcess()
     {
         GameManager.instance.uiRef.victoryScreen.SetActive(true);
+        if (AudioManager.Instance != null && AudioManager.Instance.victorySound != null)
+            AudioManager.Instance.PlayOneShot(AudioManager.Instance.victorySound);
         GameManager.instance.uiRef.victoryScreen.GetComponentInChildren<Text>().text = "Player " + (winner + 1) + " wins!";
         GameManager.instance.uiRef.victoryScreen.GetComponentInChildren<Text>().color = GameManager.instance.playerColors[winner];
     }
