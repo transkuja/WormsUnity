@@ -15,8 +15,23 @@ public class Inventory : MonoBehaviour {
     Sprite dynamiteSprite;
     [SerializeField]
     Sprite holyGrenadeSprite;
+    [SerializeField]
+    Sprite grenadeSprite;
+    [SerializeField]
+    Sprite sheepSprite;
+    [SerializeField]
+    Sprite superSheepSprite;
+    [SerializeField]
+    Sprite bananaSprite;
+    [SerializeField]
+    Sprite airstrikeSprite;
+    [SerializeField]
+    Sprite uziSprite;
+    [SerializeField]
+    Sprite shotgunSprite;
+    [SerializeField]
+    Sprite clusterGrenadeSprite;
 
-   
     public Text equipped;
 
     public void SetInventory(Dictionary<WeaponType, int> _newInventory)
@@ -62,14 +77,21 @@ public class Inventory : MonoBehaviour {
             case WeaponType.Finger:
                 return fingerSprite;
             case WeaponType.HolyGrenade:
-            case WeaponType.ClusterGrenade:
-            case WeaponType.AirStrike:
-            case WeaponType.Banana:
-            case WeaponType.Sheep:
-            case WeaponType.SuperSheep:
-            case WeaponType.Shotgun:
-            case WeaponType.Uzi:
                 return holyGrenadeSprite;
+            case WeaponType.ClusterGrenade:
+                return clusterGrenadeSprite;
+            case WeaponType.AirStrike:
+                return airstrikeSprite;
+            case WeaponType.Banana:
+                return bananaSprite;
+            case WeaponType.Sheep:
+                return sheepSprite;
+            case WeaponType.SuperSheep:
+                return superSheepSprite;
+            case WeaponType.Shotgun:
+                return shotgunSprite;
+            case WeaponType.Uzi:
+                return uziSprite;
             case WeaponType.Bazooka:
                 return bazookaSprite;
             default:

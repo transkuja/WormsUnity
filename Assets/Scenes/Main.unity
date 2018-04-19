@@ -2712,6 +2712,15 @@ MonoBehaviour:
   fingerSprite: {fileID: 21300000, guid: fee8dba0ffd40ef4eb945b45cd8b2dd4, type: 3}
   dynamiteSprite: {fileID: 21300000, guid: f20757f2b7454054488517c140e66fb1, type: 3}
   holyGrenadeSprite: {fileID: 21300000, guid: e3cdac56a22976d459c27ca23aa3ab15, type: 3}
+  grenadeSprite: {fileID: 21300000, guid: fc0cfb0fa60a2884cb98183295126b18, type: 3}
+  sheepSprite: {fileID: 21300000, guid: b6de3585173cd71428bd8ec33500b157, type: 3}
+  superSheepSprite: {fileID: 21300000, guid: 2c14dd396224403448fe0213e99213c8, type: 3}
+  bananaSprite: {fileID: 21300000, guid: c4d1ad3874a7d3849be0d2f5b55bf3cf, type: 3}
+  airstrikeSprite: {fileID: 21300000, guid: 250f6227fcb5e2044835c3fad4c27877, type: 3}
+  uziSprite: {fileID: 21300000, guid: 7f6fc7f5260c98741a4a3cc646a0eff0, type: 3}
+  shotgunSprite: {fileID: 21300000, guid: ef275d56583a4a6409e9d47b7d7bb30b, type: 3}
+  clusterGrenadeSprite: {fileID: 21300000, guid: 03dd708c142ffbc49807657e88bda24a,
+    type: 3}
   equipped: {fileID: 1119143483}
 --- !u!1 &766499369
 GameObject:
@@ -8183,7 +8192,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1809520080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
@@ -8201,7 +8210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.25157198, b: 0.30147058, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
