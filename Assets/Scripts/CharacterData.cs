@@ -48,8 +48,16 @@ public class CharacterData : MonoBehaviour {
             healthText.text = health.ToString();
 
             if (health == 0)
-                GameManager.instance.GetComponent<TurnHandler>().KillCharacter(this);
+                StartCoroutine(DeathProcess());
         }
+    }
+
+    IEnumerator DeathProcess()
+    {
+        yield return new WaitUntil(() => GetComponentInChildren<Rigidbody>().constraints == RigidbodyConstraints.FreezeRotation);
+        yield return new WaitForSeconds(1.0f);
+        GameManager.instance.GetComponent<TurnHandler>().KillCharacter(this);
+
     }
 
     public void Init(int _health, int _owner, bool _hasControl)
