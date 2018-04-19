@@ -272,8 +272,10 @@ MonoBehaviour:
   explosionType: 2
   explodesOnCollisionEnter: 0
   delayedExplosion: 1
-  explosionDelay: 6
+  explodesOnCollisionWithPlayer: 0
+  explosionDelay: 4.5
   drawGizmos: 0
+  type: 3
 --- !u!135 &135469234051426808
 SphereCollider:
   m_ObjectHideFlags: 1

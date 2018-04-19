@@ -18,12 +18,21 @@ public class ExplosiveProjectile : Projectile {
     public float explosionDelay;
 
     public bool drawGizmos;
+    public WeaponType type;
 
     private IEnumerator Start()
     {
         if (delayedExplosion)
         {
+
             yield return new WaitForSeconds(explosionDelay);
+            if (type == WeaponType.HolyGrenade)
+            {
+                if (AudioManager.Instance != null && AudioManager.Instance.holyGFX != null)
+                    AudioManager.Instance.PlayOneShot(AudioManager.Instance.holyGFX);
+                yield return new WaitForSeconds(1.5f);
+            }
+
             Explode(transform.position);
         }
         else
@@ -56,6 +65,8 @@ public class ExplosiveProjectile : Projectile {
 
     public virtual void Explode(Vector3 _explosionCenter)
     {
+        if (AudioManager.Instance != null && AudioManager.Instance.explosionFX != null)
+            AudioManager.Instance.PlayOneShot(AudioManager.Instance.explosionFX);
         Instantiate(explosionParticles, transform.GetComponentInChildren<Renderer>().transform.position, Quaternion.identity, null);
 
         Collider[] surroundings = Physics.OverlapSphere(transform.position, explosionRadius);

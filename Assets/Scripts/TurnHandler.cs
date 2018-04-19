@@ -145,6 +145,9 @@ public class TurnHandler : MonoBehaviour {
         {
             spawner.maxSpawnPerTurn = menuData.maxSpawnPerTurn;
         }
+
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.PlayMusic();
     }
 
     void Update () {
