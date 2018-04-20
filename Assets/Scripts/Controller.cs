@@ -115,6 +115,20 @@ public class Controller : MonoBehaviour {
             GameManager.instance.uiRef.inventory.gameObject.SetActive(true);
             currentState = ControllerState.Inventory;
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameManager.instance.uiRef.pauseScreen.activeInHierarchy)
+            {
+                Time.timeScale = 1.0f;
+                GameManager.instance.uiRef.pauseScreen.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 0.0f;
+                GameManager.instance.uiRef.pauseScreen.SetActive(true);
+            }
+        }
     }
 
     void MoveControls()

@@ -56,4 +56,14 @@ public class Menu : MonoBehaviour {
         maxSpawnPerTurn = Mathf.Clamp(maxSpawnPerTurn + _toAdd, 1, 9);
         spawnTxt.text = maxSpawnPerTurn.ToString();
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1.0f;
+    }
 }
