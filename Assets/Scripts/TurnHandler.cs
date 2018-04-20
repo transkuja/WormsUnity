@@ -42,6 +42,10 @@ public class TurnHandler : MonoBehaviour {
 
     public CameraMinimap cameraMinimap;
 
+    [SerializeField]
+    GameObject water;
+    int turnCounter = 0;
+
     public void WeaponShot(GameObject _projectileInstance, bool _cameraShouldFollowProjectile = true, bool _cameraShouldOnlyLookAt = false)
     {
         if (_projectileInstance.GetComponentInChildren<Projectile>().canMoveRightAfterUse)
@@ -109,6 +113,7 @@ public class TurnHandler : MonoBehaviour {
     }
 
     public void StartGame() {
+        turnCounter = 0;
         Time.timeScale = 1.0f;
         resetTurnTimer = menuData.turnTimer;
         turnTimer = resetTurnTimer;
@@ -210,7 +215,7 @@ public class TurnHandler : MonoBehaviour {
     IEnumerator NextTurn()
     {
         yield return new WaitUntil(() => CheckAllWormsRecovered());
-
+        turnCounter++;
         if (AudioManager.Instance != null && AudioManager.Instance.nextTurnFx != null)
              AudioManager.Instance.PlayOneShot(AudioManager.Instance.nextTurnFx);
 
@@ -231,6 +236,7 @@ public class TurnHandler : MonoBehaviour {
         }
 
         CratesSpawn();
+        WaterRise();
         if (isGameOver)
         {
             // End game
@@ -260,6 +266,12 @@ public class TurnHandler : MonoBehaviour {
             SwitchUI();
             hasTurnStarted = true;
         }
+    }
+
+    void WaterRise()
+    {
+        if (turnCounter%menuData.nbPlayers == 0)
+            water.transform.position += Vector3.up * Random.Range(0, 1.2f);
     }
 
     void EndGameProcess()
