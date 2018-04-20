@@ -85,6 +85,11 @@ public class Controller : MonoBehaviour {
         currentState = ControllerState.Blocked;
     }
 
+    public void SetToMove()
+    {
+        currentState = ControllerState.Move;
+    }
+
     void MoveStateControls()
     {
         if (GroundControl == null || !GroundControl.IsGrounded)

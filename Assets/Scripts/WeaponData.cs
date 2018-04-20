@@ -21,6 +21,8 @@ public class WeaponData : MonoBehaviour, IPointerClickHandler {
                     GameManager.instance.uiRef.equippedSlot.UpdateSlot(weaponData, GameManager.instance.GetComponent<TurnHandler>().GetCurrentCharacter().inventory[weaponData]);
 
                     GetComponentInParent<Inventory>().equipped.gameObject.SetActive(true);
+                    GetComponentInParent<Inventory>().gameObject.SetActive(false);
+                    GameManager.instance.GetComponent<TurnHandler>().GetCurrentCharacter().GetComponentInChildren<Controller>().SetToMove();
                 }
                 else
                 {
