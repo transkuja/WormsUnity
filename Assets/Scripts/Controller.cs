@@ -120,6 +120,8 @@ public class Controller : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+            if (AudioManager.Instance != null && AudioManager.Instance.jumpVoiceFX != null)
+                AudioManager.Instance.PlayOneShot(AudioManager.Instance.jumpVoiceFX, 2.0f);
         }
 
         transform.Rotate(Vector3.up * Input.GetAxis("Horizontal"));

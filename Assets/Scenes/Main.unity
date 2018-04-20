@@ -3566,10 +3566,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 1316237236870700, guid: a25a20ab90538e34ebe87faaf4a1b986, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a25a20ab90538e34ebe87faaf4a1b986, type: 2}
   m_IsPrefabParent: 0

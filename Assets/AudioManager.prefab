@@ -421,7 +421,7 @@ MonoBehaviour:
   crateFx: {fileID: 8300000, guid: 3100980ddb251c54e985891210b86d6d, type: 3}
   healCrateFx: {fileID: 8300000, guid: 0406fca456bd7a14c92245f9ef80b4bd, type: 3}
   boingFx: {fileID: 8300000, guid: bf08b184a0e8c3342ad0d87d3b4feb15, type: 3}
-  jumpVoiceFX: {fileID: 0}
+  jumpVoiceFX: {fileID: 8300000, guid: 68c139403fe10eb46ab25685b798b165, type: 3}
   sheepFX: {fileID: 8300000, guid: a0218deddc994e049bbc7d613e24488d, type: 3}
   superSheepReleaseFx: {fileID: 8300000, guid: 1fe613dd90cf5ee4ba3416ff8265145c, type: 3}
   superSheepFlightFx: {fileID: 8300000, guid: dcd0df342f6ea7f45b53ddc888d66c81, type: 3}
