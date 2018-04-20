@@ -28,6 +28,8 @@ public class SuperSheepController : MonoBehaviour {
         rb.useGravity = false;
 
         Rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        Rb.angularDrag = 5.0f;
+        
         Rb.AddForce((transform.forward + Vector3.up) * 2.0f, ForceMode.Impulse);
         Rb.AddForce(transform.forward * sheepSpeed, ForceMode.Impulse);
         if (AudioManager.Instance != null && AudioManager.Instance.superSheepReleaseFx != null)
@@ -38,6 +40,13 @@ public class SuperSheepController : MonoBehaviour {
             associatedAudioSource = AudioManager.Instance.Play(AudioManager.Instance.superSheepFlightFx);
             associatedAudioSource.loop = true;
         }
+        StartCoroutine(ActiveCollider());
+    }
+
+    IEnumerator ActiveCollider()
+    {
+        yield return new WaitForSeconds(0.25f);
+        GetComponentInChildren<Collider>().enabled = true;
     }
 
     private void OnDestroy()
@@ -49,9 +58,9 @@ public class SuperSheepController : MonoBehaviour {
     {
         Rb.velocity = transform.forward * sheepSpeed;
 
-            transform.Rotate(Input.GetAxis("Vertical") * transform.right, 0.5f);
-        if (Input.GetAxis("Vertical") < 0.01f && Input.GetAxis("Vertical") > -0.01f)
-            transform.Rotate(Vector3.up * Input.GetAxis("Horizontal")*2.0f, 2.0f, Space.World);
+        Rb.AddTorque(transform.right * -Input.GetAxis("Vertical") * 1.5f, ForceMode.Force);
+        Rb.AddTorque(transform.up * Input.GetAxis("Horizontal") * 5.0f, ForceMode.Force);
 
+        Rb.angularVelocity = Vector3.ClampMagnitude(Rb.angularVelocity, 15.0f);
     }
 }
