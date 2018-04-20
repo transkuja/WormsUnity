@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrateSpawner : MonoBehaviour {
 //    public enum WeaponType { Bazooka, Finger, Dynamite, HolyGrenade, Grenade, ClusterGrenade, AirStrike, Banana, Sheep, SuperSheep, Uzi, Shotgun, Size, None }
 
-    int[] ammoDefaultValues = { 2, -1, -1, -1, -1, -1, -1, -1, -1, -1, 2, 2 };
+    int[] ammoDefaultValues = { 5, -1, -1, -1, 5, 5, -1, -1, -1, -1, 2, 2 };
     [SerializeField]
     GameObject[] crates;
     Collider spawnZone;

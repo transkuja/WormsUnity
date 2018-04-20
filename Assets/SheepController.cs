@@ -48,6 +48,11 @@ public class SheepController : MonoBehaviour {
                 needJump = true;
             }
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            GetComponentInChildren<ExplosiveProjectile>().Explode(transform.position);
+        }
 	}
 
     private void OnCollisionEnter(Collision collision)
