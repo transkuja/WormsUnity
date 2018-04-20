@@ -51,7 +51,8 @@ public class SuperSheepController : MonoBehaviour {
 
     private void OnDestroy()
     {
-        associatedAudioSource.loop = false;
+        if (associatedAudioSource != null)
+            associatedAudioSource.loop = false;
     }
 
     private void Update()
