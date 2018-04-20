@@ -37,7 +37,10 @@ public class MissileProjectile : ExplosiveProjectile {
     private void OnDestroy()
     {
         if (associatedAudioSource != null)
+        {
+            associatedAudioSource.Stop();
             associatedAudioSource.loop = false;
+        }
     }
 
     void Update () {
