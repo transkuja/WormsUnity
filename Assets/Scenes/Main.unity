@@ -561,7 +561,7 @@ Prefab:
     - target: {fileID: 114462552082094152, guid: c3541726266dfb845a08121fbc7a15a2,
         type: 2}
       propertyPath: weaponType
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}
@@ -5474,7 +5474,7 @@ Prefab:
     - target: {fileID: 114462552082094152, guid: c3541726266dfb845a08121fbc7a15a2,
         type: 2}
       propertyPath: weaponType
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c3541726266dfb845a08121fbc7a15a2, type: 2}
@@ -6731,6 +6731,7 @@ MonoBehaviour:
   cameraLerpTimer: 1.5
   currentProjectileInstance: {fileID: 0}
   cameraMinimap: {fileID: 1652237651}
+  water: {fileID: 1522919513}
 --- !u!114 &1406803402
 MonoBehaviour:
   m_ObjectHideFlags: 0
