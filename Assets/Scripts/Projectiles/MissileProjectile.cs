@@ -5,6 +5,7 @@ using UnityEngine;
 public class MissileProjectile : ExplosiveProjectile {
 
     Rigidbody rb;
+    AudioSource associatedAudioSource;
 
     public Rigidbody Rb
     {
@@ -23,9 +24,23 @@ public class MissileProjectile : ExplosiveProjectile {
 
     void Start () {
         Rb = GetComponent<Rigidbody>();
-	}
-	
-	void Update () {
+        if (!GetComponentInParent<AirStrikeProjectile>())
+        {
+            if (AudioManager.Instance != null && AudioManager.Instance.missileFX != null)
+            {
+                associatedAudioSource = AudioManager.Instance.Play(AudioManager.Instance.missileFX);
+                associatedAudioSource.loop = true;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (associatedAudioSource != null)
+            associatedAudioSource.loop = false;
+    }
+
+    void Update () {
         transform.LookAt(transform.position + Rb.velocity);
 	}
 

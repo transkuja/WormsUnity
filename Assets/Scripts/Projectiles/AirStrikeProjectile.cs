@@ -13,11 +13,19 @@ public class AirStrikeProjectile : Projectile {
     bool isAboveWaterAgain = false;
 
     Rigidbody rb;
+    AudioSource associatedAudioSource;
 
     private IEnumerator Start()
     {
         everythingImpacted = new List<Collider>();
         rb = GetComponentInChildren<Rigidbody>();
+
+        if (AudioManager.Instance != null && AudioManager.Instance.planeFx != null)
+        {
+            associatedAudioSource = AudioManager.Instance.Play(AudioManager.Instance.planeFx);
+            associatedAudioSource.loop = true;
+        }
+
         yield return new WaitForSeconds(30.0f);
         Destroy(gameObject);
     }
@@ -33,6 +41,10 @@ public class AirStrikeProjectile : Projectile {
             {
                 isAboveWaterAgain = true;
                 GameManager.instance.GetComponent<TurnHandler>().WeaponEndProcess(GameManager.instance.GetComponent<TurnHandler>().CheckSelfDamage(everythingImpacted.ToArray()));
+                associatedAudioSource.loop = false;
+                associatedAudioSource.Stop();
+
+                Destroy(GetComponentInChildren<AirStrikeController>());
             }
         }
     }

@@ -29,9 +29,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip victorySound;   
 
     [SerializeField]
-    private float volumeMusic = 0.015f;
+    private float volumeMusic;
     [SerializeField]
-    private float volumeFXs = 0.01f;
+    private float volumeFXs;
 
 
     private float currentVolume;
@@ -44,41 +44,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public float VolumeMusic
-    {
-        get
-        {
-            return currentVolume;
-        }
-
-        set
-        {
-            currentVolume = value;
-            sourceMusic.volume = currentVolume;
-        }
-    }
-
-    public float VolumeFXs
-    {
-        get
-        {
-            return volumeFXs;
-        }
-
-        set
-        {
-            volumeFXs = value;
-            foreach (AudioSource source in sourceFX)
-                source.volume = volumeFXs;
-        }
-    }
-
     void Awake()
     {
         if (s_instance == null)
         {
             s_instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else if (s_instance != this)
         {

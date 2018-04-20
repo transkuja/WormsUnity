@@ -44,6 +44,8 @@ public class AirStrikeController : MonoBehaviour {
             {
                 currentDelay = delay;
                 Instantiate(projectile.missile, transform.position + Vector3.down, transform.rotation, transform.parent).AddComponent<Rigidbody>();
+                if (AudioManager.Instance != null && AudioManager.Instance.airStrikeFx != null)
+                    AudioManager.Instance.PlayOneShot(AudioManager.Instance.airStrikeFx);
             }
         }
 	}

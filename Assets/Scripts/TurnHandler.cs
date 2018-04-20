@@ -89,6 +89,8 @@ public class TurnHandler : MonoBehaviour {
 
     public void KillCharacter(CharacterData _deadCharacter)
     {
+        bool wasCurrentCharacter = _deadCharacter == GetCurrentCharacter();
+
         characters[_deadCharacter.owner].Remove(_deadCharacter);
         GameObject tombInstance = Instantiate(tomb, null);
         tombInstance.transform.position = _deadCharacter.transform.position;
@@ -96,6 +98,9 @@ public class TurnHandler : MonoBehaviour {
         Destroy(_deadCharacter.gameObject);
 
         isGameOver = CheckEndGame();
+
+        if (wasCurrentCharacter)
+            turnTimer = 0.0f;
     }
 
     public CharacterData GetCurrentCharacter()

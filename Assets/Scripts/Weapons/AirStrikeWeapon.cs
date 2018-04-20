@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AirStrikeWeapon : ControllableWeapon {
+public class AirStrikeWeapon : Weapon {
 
     public override void Shoot()
     {
