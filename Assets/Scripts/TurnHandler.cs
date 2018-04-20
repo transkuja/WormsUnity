@@ -271,7 +271,7 @@ public class TurnHandler : MonoBehaviour {
     void WaterRise()
     {
         if (turnCounter%menuData.nbPlayers == 0)
-            water.transform.position += Vector3.up * Random.Range(0, 1.2f);
+            water.transform.position += Vector3.up * Random.Range(0.2f, 1.2f);
     }
 
     void EndGameProcess()
